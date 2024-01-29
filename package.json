@@ -1,0 +1,178 @@
+{
+  "name": "ftml-editor",
+  "publisher": "JustOneMorePieceOfCode",
+  "displayName": "FTML Editor",
+  "description": "RuFoundation FTML branch editor with live preview",
+  "repository": "not now",
+  "version": "0.0.17",
+  "keywords": [
+    "ftml",
+    "scp",
+    "scp ru",
+    "scp foundation"
+  ],
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "icon": "./assets/ftml-editor.128x128.png",
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ftml-editor.preview.start",
+        "category": "FTML",
+        "title": "%ftml-editor.preview.start%"
+      },
+      {
+        "command": "ftml-editor.preview.start-live",
+        "category": "FTML",
+        "title": "%ftml-editor.preview.start-live%"
+      },
+      {
+        "command": "ftml-editor.preview.refresh",
+        "category": "FTML",
+        "title": "%ftml-editor.preview.refresh%"
+      }
+      ,
+      {
+        "command": "ftml-editor.account.login",
+        "category": "FTML",
+        "title": "%ftml-editor.account.login%"
+      },
+      {
+        "command": "ftml-editor.account.logout",
+        "category": "FTML",
+        "title": "%ftml-editor.account.logout%"
+      },
+      {
+        "command": "ftml-editor.account.publish",
+        "category": "FTML",
+        "title": "%ftml-editor.account.publish%"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceLangId == ftml",
+          "command": "ftml-editor.preview.start",
+          "group": "2_ftml"
+        },
+        {
+          "when": "resourceLangId == ftml",
+          "command": "ftml-editor.preview.start-live",
+          "group": "2_ftml"
+        },
+        {
+          "when": "resourceLangId == ftml",
+          "command": "ftml-editor.preview.refresh",
+          "group": "2_ftml"
+        }
+      ],
+      "editor/title": [
+        {
+          "when": "resourceLangId == ftml",
+          "command": "ftml-editor.preview.start",
+          "group": "2_ftml"
+        },
+        {
+          "when": "resourceLangId == ftml",
+          "command": "ftml-editor.preview.start-live",
+          "group": "2_ftml"
+        },
+        {
+          "when": "resourceLangId == ftml",
+          "command": "ftml-editor.preview.refresh",
+          "group": "2_ftml"
+        }
+      ],
+      "webview/context": [
+        {
+          "when": "webviewId == ftml-editor.webview.preview",
+          "command": "ftml-editor.preview.refresh",
+          "group": "5_ftml"
+        }
+      ],
+      "webview/title": [
+        {
+          "when": "webviewId == ftml-editor.webview.preview",
+          "command": "ftml-editor.preview.refresh",
+          "group": "5_ftml"
+        }
+      ]
+    },
+    "snippets": [
+      {
+        "language": "ftml",
+        "path": "./snippets/basic-blocks.json"
+      },
+      {
+        "language": "ftml",
+        "path": "./snippets/components.json"
+      },
+      {
+        "language": "ftml",
+        "path": "./snippets/themes.json"
+      },
+      {
+        "language": "ftml",
+        "path": "./snippets/templates.json"
+      }
+    ],
+    "languages": [
+      {
+        "id": "ftml",
+        "aliases": [
+          "FTML",
+          "ftml"
+        ],
+        "extensions": [
+          ".ftml"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "",
+          "dark": ""
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "ftml",
+        "scopeName": "text.ftml",
+        "path": "./syntaxes/ftml.tmLanguage.json",
+        "embeddedLanguages": {
+          "meta.embedded.block.css": "css",
+          "meta.embedded.block.html": "html",
+          "meta.embedded.block.katex": "katex",
+          "meta.embedded.block.yaml": "yaml"
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.56.0",
+    "js-yaml": "^4.1.0",
+    "typescript": "^5.3.3"
+  }
+}

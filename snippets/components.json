@@ -1,0 +1,50 @@
+{
+	"block:include-component": {
+		"prefix": ["component", "[[include component"],
+		"body": [
+			"[[include component:$1]]"
+		]
+	},
+    "component:acs": {
+		"prefix": ["acs", "[[include acs", "[[include component:anomaly-class-bar-source"],
+		"body": [
+			"[[include component:anomaly-class-bar-source",
+			"|item-number= $1",
+			"|clearance= $2",
+			"|container-class= $3",
+			"|secondary-class= $4",
+			"|secondary-icon= $5",
+			"|disruption-class= $6",
+			"|risk-class= $7",
+			"]]"
+		]
+	},
+    "component:aim": {
+        "prefix": ["aim", "[[include aim", "[[include component:advanced-information-methodology"],
+        "body": [
+            "[[include component:advanced-information-methodology",
+            "|XXXX= $1",
+            "|lv= $2",
+            "|cc= $3",
+            "|dc= $4",
+            "|site= $5",
+            "|dir= $6",
+            "|head= $7",
+            "|mtf= $8",
+            "]]"
+        ]
+    },
+    "component:earthworm": {
+        "prefix": ["earthworm", "[[include earthworm", "[[include component:earthworm"],
+        "body": [
+            "[[include component:earthworm",
+            "|previous-url= $1",
+            "|previous-title = $2",
+            "|hub-url= $3",
+            "|hub-title= $4",
+            "|next-url= $5",
+            "|next-title= $6",
+            "]]"
+        ]
+    }
+}

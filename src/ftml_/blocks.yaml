@@ -1,0 +1,10 @@
+block-map:
+  begin: (?i)\[\[\s*([^\/]\S*)\s*(.*)\]\]
+  end: (?i)\[\[\s*([\/]\S*)\s*\]\]
+  tag: 0
+  args: 1
+  isMap: True
+  body: <$tag$ $args$>$body$</$tag$>
+
+    
+  

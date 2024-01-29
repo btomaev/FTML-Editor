@@ -1,0 +1,610 @@
+{
+	"block:div": {
+		"prefix": ["[[div"],
+		"body": [
+			"[[div$2]]",
+			"$1", 
+			"[[/div]]"
+		]
+	},
+	"block:div_": {
+		"prefix": ["[[div_"],
+		"body": [
+			"[[div_$2]]",
+			"$1", 
+			"[[/div_]]"
+		]
+	},
+	"block:code": {
+		"prefix": ["[[code"],
+		"body": [
+			"[[code$2]]",
+			"$1", 
+			"[[/code]]"
+		]
+	},
+	"block:module": {
+		"prefix": ["[[module"],
+		"body": [
+			"[[module $1]]",
+			"$2", 
+			"[[/module]]"
+		]
+	},
+	"block:module654": {
+		"prefix": ["[[module654"],
+		"body": [
+			"[[module654 $1]]",
+			"$2", 
+			"[[/module654]]"
+		]
+	},
+	"block:module-css": {
+		"prefix": ["[[module css", "[[css"],
+		"body": [
+			"[[module css$2]]",
+			"$1", 
+			"[[/module]]"
+		]
+	},
+	"block:ifcategory": {
+		"prefix": ["[[ifcategory"],
+		"body": [
+			"[[ifcategory $1]]",
+			"$2", 
+			"[[/ifcategory]]"
+		]
+	},
+	"block:iftags": {
+		"prefix": ["[[iftags"],
+		"body": [
+			"[[iftags $1]]",
+			"$2", 
+			"[[/iftags]]"
+		]
+	},
+	"block:html": {
+		"prefix": ["[[html"],
+		"body": [
+			"[[html$2]]",
+			"$1", 
+			"[[/html]]"
+		]
+	},
+	"block:anchor": {
+		"prefix": ["[[anchor"],
+		"body": [
+			"[[anchor $1]]",
+			"$2", 
+			"[[/anchor]]"
+		]
+	},
+	"block:*anchor": {
+		"prefix": ["[[*anchor"],
+		"body": [
+			"[[*anchor $1]]",
+			"$2", 
+			"[[/*anchor]]"
+		]
+	},
+	"block:anchor_": {
+		"prefix": ["[[anchor_"],
+		"body": [
+			"[[anchor_ $1]]",
+			"$2", 
+			"[[/anchor_]]"
+		]
+	},
+	"block:*anchor_": {
+		"prefix": ["[[*anchor_"],
+		"body": [
+			"[[*anchor_ $1]]",
+			"$2", 
+			"[[/*anchor_]]"
+		]
+	},
+	"block:a": {
+		"prefix": ["[[anchor"],
+		"body": [
+			"[[anchor $1]]",
+			"$2", 
+			"[[/anchor]]"
+		]
+	},
+	"block:*a": {
+		"prefix": ["[[*a"],
+		"body": [
+			"[[*a $1]] $2 [[/*a]]"
+		]
+	},
+	"block:a_": {
+		"prefix": ["[[a_"],
+		"body": [
+			"[[a_ $1]] $2 [[/a_]]"
+		]
+	},
+	"block:*a_": {
+		"prefix": ["[[*a_"],
+		"body": [
+			"[[*a_ $1]] $2 [[/*a_]]"
+		]
+	},
+	"block:blockquote": {
+		"prefix": ["[[blockquote"],
+		"body": [
+			"[[blockquote]]",
+			"$1", 
+			"[[/blockquote]]"
+		]
+	},
+	"block:quote": {
+		"prefix": ["[[quote"],
+		"body": [
+			"[[quote]]",
+			"$1", 
+			"[[/quote]]"
+		]
+	},
+	"block:bold": {
+		"prefix": ["[[bold"],
+		"body": [
+			"[[bold]]",
+			"$1", 
+			"[[/bold]]"
+		]
+	},
+	"block:b": {
+		"prefix": ["[[b"],
+		"body": [
+			"[[b]] $1 [[/b]]"
+		]
+	},
+	"block:strong": {
+		"prefix": ["[[strong"],
+		"body": [
+			"[[strong]]",
+			"$1", 
+			"[[/strong]]"
+		]
+	},
+	"block:collapsible": {
+		"prefix": ["[[collapsible"],
+		"body": [
+			"[[collapsible]]",
+			"$1", 
+			"[[/collapsible]]"
+		]
+	},
+	"block:deletion": {
+		"prefix": ["[[deletion"],
+		"body": [
+			"[[deletion]]",
+			"$1", 
+			"[[/deletion]]"
+		]
+	},
+	"block:del": {
+		"prefix": ["[[del"],
+		"body": [
+			"[[del]]",
+			"$1", 
+			"[[/del]]"
+		]
+	},
+	"block:hidden": {
+		"prefix": ["[[hidden"],
+		"body": [
+			"[[hidden]]",
+			"$1", 
+			"[[/hidden]]"
+		]
+	},
+	"block:ins": {
+		"prefix": ["[[ins"],
+		"body": [
+			"[[ins]]",
+			"$1", 
+			"[[/ins]]"
+		]
+	},
+	"block:insertion": {
+		"prefix": ["[[insertion"],
+		"body": [
+			"[[insertion]]",
+			"$1", 
+			"[[/insertion]]"
+		]
+	},
+	"block:invisible": {
+		"prefix": ["[[invisible"],
+		"body": [
+			"[[invisible]]",
+			"$1", 
+			"[[/invisible]]"
+		]
+	},
+	"block:italics": {
+		"prefix": ["[[italics"],
+		"body": [
+			"[[italics]]",
+			"$1", 
+			"[[/italics]]"
+		]
+	},
+	"block:i": {
+		"prefix": ["[[i"],
+		"body": [
+			"[[i]] $1 [[/i]]"
+		]
+	},
+	"block:emphasis": {
+		"prefix": ["[[emphasis"],
+		"body": [
+			"[[emphasis]]",
+			"$1", 
+			"[[/emphasis]]"
+		]
+	},
+	"block:em": {
+		"prefix": ["[[em"],
+		"body": [
+			"[[em]]",
+			"$1", 
+			"[[/em]]"
+		]
+	},
+	"block:paragraph": {
+		"prefix": ["[[paragraph"],
+		"body": [
+			"[[paragraph]]",
+			"$1", 
+			"[[/paragraph]]"
+		]
+	},
+	"block:p": {
+		"prefix": ["[[p"],
+		"body": [
+			"[[p]] $1 [[/p]]"
+		]
+	},
+	"block:strikethrough": {
+		"prefix": ["[[strikethrough"],
+		"body": [
+			"[[strikethrough]]",
+			"$1", 
+			"[[/strikethrough]]"
+		]
+	},
+	"block:s": {
+		"prefix": ["s", "[[s"],
+		"body": [
+			"[[s]] $1 [[/s]]"
+		]
+	},
+	"block:subscript": {
+		"prefix": ["[[subscript"],
+		"body": [
+			"[[subscript]]",
+			"$1", 
+			"[[/subscript]]"
+		]
+	},
+	"block:sub": {
+		"prefix": ["[[sub"],
+		"body": [
+			"[[sub]] $1 [[/sub]]"
+		]
+	},
+	"block:superscript": {
+		"prefix": ["[[superscript"],
+		"body": [
+			"[[superscript]]",
+			"$1", 
+			"[[/superscript]]"
+		]
+	},
+	"block:sup": {
+		"prefix": ["[[sup"],
+		"body": [
+			"[[sup]] $1 [[/sup]]"
+		]
+	},
+	"block:super": {
+		"prefix": ["[[super"],
+		"body": [
+			"[[super]] $1 [[/super]]"
+		]
+	},
+	"block:underline": {
+		"prefix": ["[[underline"],
+		"body": [
+			"[[underline]]",
+			"$1", 
+			"[[/underline]]"
+		]
+	},
+	"block:u": {
+		"prefix": ["[[u"],
+		"body": [
+			"[[u]]",
+			"$1", 
+			"[[/u]]"
+		]
+	},
+	"block:align-left": {
+		"prefix": ["[[<"],
+		"body": [
+			"[[<]]",
+			"$1", 
+			"[[/<]]"
+		]
+	},
+	"block:align-right": {
+		"prefix": ["[[>"],
+		"body": [
+			"[[<]]",
+			"$1", 
+			"[[/<]]"
+		]
+	},
+	"block:align-center": {
+		"prefix": ["[[="],
+		"body": [
+			"[[=]]",
+			"$1", 
+			"[[/=]]"
+		]
+	},
+	"block:align-stretch": {
+		"prefix": ["[[=="],
+		"body": [
+			"[[==]]",
+			"$1", 
+			"[[/==]]"
+		]
+	},
+	"block:tabview": {
+		"prefix": ["[[tabview"],
+		"body": [
+			"[[tabview$2]]",
+			"$1", 
+			"[[/tabview]]"
+		]
+	},
+	"block:cell": {
+		"prefix": ["[[cell"],
+		"body": [
+			"[[cell$2]]",
+			"$1", 
+			"[[/cell]]"
+		]
+	},
+	"block:row": {
+		"prefix": ["[[row"],
+		"body": [
+			"[[row$2]]",
+			"$1", 
+			"[[/row]]"
+		]
+	},
+	"block:table": {
+		"prefix": ["[[table"],
+		"body": [
+			"[[table$2]]",
+			"$1", 
+			"[[/table]]"
+		]
+	},
+	"block:tab": {
+		"prefix": ["[[tab"],
+		"body": [
+			"[[tab$2]]",
+			"$1", 
+			"[[/tab]]"
+		]
+	},
+	"block:mark": {
+		"prefix": ["[[mark"],
+		"body": [
+			"[[mark]] $1 [[/mark]]"
+		]
+	},
+	"block:highlight": {
+		"prefix": ["[[highlight"],
+		"body": [
+			"[[highlight]] $1 [[/highlight]]"
+		]
+	},
+	"block:monospace": {
+		"prefix": ["[[monospace"],
+		"body": [
+			"[[monospace]] $1 [[/monospace]]"
+		]
+	},
+	"block:mono": {
+		"prefix": ["[[mono"],
+		"body": [
+			"[[mono]] $1 [[/mono]]"
+		]
+	},
+	"block:tt": {
+		"prefix": ["[[tt"],
+		"body": [
+			"[[tt]] $1 [[/tt]]"
+		]
+	},
+	"block:module-inline": {
+		"prefix": ["[[module"],
+		"body": [
+			"[[module $1]]"
+		]
+	},
+	"block:module654-inline": {
+		"prefix": ["[[module654"],
+		"body": [
+			"[[module654 $1]]"
+		]
+	},
+	"block:equation": {
+		"prefix": ["[[equation"],
+		"body": [
+			"[[equation $1]]"
+		]
+	},
+	"block:eref": {
+		"prefix": ["[[eref"],
+		"body": [
+			"[[eref $1]]"
+		]
+	},
+	"block:eqref": {
+		"prefix": ["[[eqref"],
+		"body": [
+			"[[eqref $1]]"
+		]
+	},
+	"block:lines": {
+		"prefix": ["[[lines"],
+		"body": [
+			"[[lines $1]]"
+		]
+	},
+	"block:newlines": {
+		"prefix": ["[[newlines"],
+		"body": [
+			"[[newlines $1]]"
+		]
+	},
+	"block:target": {
+		"prefix": ["[[target"],
+		"body": [
+			"[[target $1]]"
+		]
+	},
+	"block:anchortarget": {
+		"prefix": ["[[anchortarget"],
+		"body": [
+			"[[anchortarget $1]]"
+		]
+	},
+	"block:user": {
+		"prefix": ["[[user"],
+		"body": [
+			"[[user $1]]"
+		]
+	},
+	"block:*user": {
+		"prefix": ["[[*user"],
+		"body": [
+			"[[*user $1]]"
+		]
+	},
+	"block:date": {
+		"prefix": ["[[date"],
+		"body": [
+			"[[date $1]]"
+		]
+	},
+	"block:iframe": {
+		"prefix": ["[[iframe"],
+		"body": [
+			"[[iframe $1]]"
+		]
+	},
+	"block:image": {
+		"prefix": ["[[image"],
+		"body": [
+			"[[image $1]]"
+		]
+	},
+	"block:=image": {
+		"prefix": ["[[=image"],
+		"body": [
+			"[[=image $1]]"
+		]
+	},
+	"block:>image": {
+		"prefix": ["[[>image"],
+		"body": [
+			"[[>image $1]]"
+		]
+	},
+	"block:<image": {
+		"prefix": ["[[<image"],
+		"body": [
+			"[[<image $1]]"
+		]
+	},
+	"block:f<image": {
+		"prefix": ["[[f<image"],
+		"body": [
+			"[[f<image $1]]"
+		]
+	},
+	"block:f>image": {
+		"prefix": ["[[f>image"],
+		"body": [
+			"[[f>image $1]]"
+		]
+	},
+	"block:include": {
+		"prefix": ["[[include"],
+		"body": [
+			"[[include $1]]"
+		]
+	},
+	"block:footnoteblock": {
+		"prefix": ["[[footnoteblock"],
+		"body": [
+			"[[footnoteblock]]"
+		]
+	},
+	"block:toc": {
+		"prefix": ["[[toc"],
+		"body": [
+			"[[toc]]"
+		]
+	},
+	"block:f<toc": {
+		"prefix": ["[[f<toc"],
+		"body": [
+			"[[f<toc]]"
+		]
+	},
+	"block:f>toc": {
+		"prefix": ["[[f>toc"],
+		"body": [
+			"[[f>toc]]"
+		]
+	},
+	"block:size": {
+		"prefix": ["[[size"],
+		"body": [
+			"[[size $1]] $2 [[/size]]"
+		]
+	},
+	"block:span": {
+		"prefix": ["[[span"],
+		"body": [
+			"[[span$2]] $1 [[/span]]"
+		]
+	},
+	"block:span_": {
+		"prefix": ["[[span_"],
+		"body": [
+			"[[span_$2]] $1 [[/span_]]"
+		]
+	},
+	"block:sfootnote": {
+		"prefix": ["[[footnote"],
+		"body": [
+			"[[footnote$2]] $1 [[/footnote]]"
+		]
+	},
+	"block:link": {
+		"prefix": ["link"],
+		"body": [
+			"[[[${1:url}|${2:pseudonime}]]]"
+		]
+	}
+}

@@ -1,0 +1,8 @@
+{
+    "ftml-editor.preview.start": "Предпросмотр",
+    "ftml-editor.preview.start-live": "Живой предпросмотр",
+    "ftml-editor.preview.refresh": "Обновить предпросмотр",
+    "ftml-editor.account.login": "Войти в учетную запись scpfoundation.net",
+    "ftml-editor.account.logout": "Выйти из учетной записи scpfoundation.net",
+    "ftml-editor.account.publish": "Опубликовать статью на scpfoundation.net"
+}

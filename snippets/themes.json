@@ -1,0 +1,140 @@
+{
+    "theme:blackhole": {
+        "prefix": ["blackholetheme", "[[include theme:black-highlighter-theme"],
+        "body": [
+            "[[include theme:black-highlighter-theme]]"
+        ]
+    },
+    "theme:temporary-infallibility": {
+        "prefix": ["temporary-infallibility", "[[include theme:temporary-infallibility"],
+        "body": [
+            "[[include theme:temporary-infallibility]]"
+        ]
+    },
+    "theme:communication-forum": {
+        "prefix": ["communication-forum", "[[include theme:communication-forum"],
+        "body": [
+            "[[include theme:communication-forum]]"
+        ]
+    },
+    "theme:retro-gru": {
+        "prefix": ["retro-gru", "[[include theme:retro-gru"],
+        "body": [
+            "[[include theme:retro-gru]]"
+        ]
+    },
+    "theme:logos": {
+        "prefix": ["logos", "[[include theme:logos"],
+        "body": [
+            "[[include theme:logos]]"
+        ]
+    },
+    "theme:the-foundation-theme": {
+        "prefix": ["the-foundation-theme", "[[include theme:the-foundation-theme"],
+        "body": [
+            "[[include theme:the-foundation-theme]]"
+        ]
+    },
+    "theme:flopstyle-dark": {
+        "prefix": ["flopstyle-dark", "[[include theme:flopstyle-dark"],
+        "body": [
+            "[[include theme:flopstyle-dark]]"
+        ]
+    },
+    "theme:ad-abyssum-penumbra": {
+        "prefix": ["ad-abyssum-penumbra", "[[include theme:ad-abyssum-penumbra"],
+        "body": [
+            "[[include theme:ad-abyssum-penumbra]]"
+        ]
+    },
+    "theme:wanderers-station": {
+        "prefix": ["wanderers-station", "[[include theme:wanderers-station"],
+        "body": [
+            "[[include theme:wanderers-station]]"
+        ]
+    },
+    "theme:shattered-thoughts": {
+        "prefix": ["shattered-thoughts", "[[include theme:shattered-thoughts"],
+        "body": [
+            "[[include theme:shattered-thoughts]]"
+        ]
+    },
+    "theme:dira-theme": {
+        "prefix": ["dira-theme", "[[include theme:dira-theme"],
+        "body": [
+            "[[include theme:dira-theme]]"
+        ]
+    },
+    "theme:loneliness-and-oblivion": {
+        "prefix": ["loneliness-and-oblivion", "[[include theme:loneliness-and-oblivion"],
+        "body": [
+            "[[include theme:loneliness-and-oblivion]]"
+        ]
+    },
+    "theme:5k": {
+        "prefix": ["5k", "[[include theme:5k"],
+        "body": [
+            "[[include theme:5k]]"
+        ]
+    },
+    "theme:highroller": {
+        "prefix": ["highroller", "[[include theme:highroller"],
+        "body": [
+            "[[include theme:highroller]]"
+        ]
+    },
+    "theme:xmas": {
+        "prefix": ["xmas", "[[include theme:xmas"],
+        "body": [
+            "[[include theme:xmas]]"
+        ]
+    },
+    "theme:foxtrot": {
+        "prefix": ["foxtrot", "[[include theme:foxtrot"],
+        "body": [
+            "[[include theme:foxtrot]]"
+        ]
+    },
+    "theme:admo": {
+        "prefix": ["admo", "[[include theme:admo"],
+        "body": [
+            "[[include theme:admo]]"
+        ]
+    },
+    "theme:extra-black-highlighter-theme": {
+        "prefix": ["extra-black-highlighter-theme", "[[include theme:extra-black-highlighter-theme"],
+        "body": [
+            "[[include theme:extra-black-highlighter-theme]]"
+        ]
+    },
+    "theme:dustjacket": {
+        "prefix": ["dustjacket", "[[include theme:dustjacket"],
+        "body": [
+            "[[include theme:dustjacket]]"
+        ]
+    },
+    "theme:scp-archive": {
+        "prefix": ["scp-archive", "[[include theme:scp-archive"],
+        "body": [
+            "[[include theme:scp-archive]]"
+        ]
+    },
+    "theme:redtape": {
+        "prefix": ["redtape", "[[include theme:redtape"],
+        "body": [
+            "[[include theme:redtape]]"
+        ]
+    },
+    "theme:ar": {
+        "prefix": ["ar", "[[include theme:ar"],
+        "body": [
+            "[[include theme:ar]]"
+        ]
+    },
+    "theme:oceanbound": {
+        "prefix": ["oceanbound", "[[include theme:oceanbound"],
+        "body": [
+            "[[include theme:oceanbound]]"
+        ]
+    }
+}
