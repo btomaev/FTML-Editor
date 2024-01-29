@@ -22,7 +22,9 @@ export class FTMLPreviewPanel {
 	private _disposables: vscode.Disposable[] = [];
 
 	public static startPeview(document: vscode.TextDocument, pageId: string, isLive: boolean, context: vscode.ExtensionContext) {
-		let docname = document.fileName.replaceAll("\\", "/").substring(document.fileName.lastIndexOf("/")+1);
+		const docpath = document.fileName.replaceAll("\\", "/");
+		const match = docpath.match(/\/?([^\/]*)$/);
+		const docname = match ? match[1]: docpath;
 
 		const panel = vscode.window.createWebviewPanel(
 			FTMLPreviewPanel.viewType,

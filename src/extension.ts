@@ -2,11 +2,13 @@ import * as vscode from 'vscode';
 import { FTMLPreviewPanel, PreviewPanelsList } from "./preview-panel";
 import { AUTH_TYPE, WikiAuthProvider, WikiSession } from './wiki-auth';
 import { loadMeta, saveMeta, FileMeta } from './files-meta';
+import { md5 } from 'js-md5';
 
 async function checkPasskey(secrets: vscode.SecretStorage) {
 	let passkey = await secrets.get('preview.passkey');
-
-	if (passkey != 'i do not recognize the buddies in the water') {
+	
+	if (!passkey) return false;
+	if (md5(passkey) != '0d7cfa875ed93012a2263112124c0975') {
 		vscode.window.showErrorMessage('Wrong passkey, access denied');
 		const newPasskey = await vscode.window.showInputBox({
 			title: 'Введите пароль для доступа к функции',
@@ -15,7 +17,7 @@ async function checkPasskey(secrets: vscode.SecretStorage) {
 			ignoreFocusOut: true
 		});
 		if(newPasskey == undefined) return false;
-		await secrets.store('preview.passkey', newPasskey.toLowerCase());
+		await secrets.store('preview.passkey', newPasskey);
 		return await checkPasskey(secrets);
 	}
 	return true;

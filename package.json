@@ -4,7 +4,7 @@
   "displayName": "FTML Editor",
   "description": "RuFoundation FTML branch editor with live preview",
   "repository": "https://github.com/btomaev/ftml-editor",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "keywords": [
     "ftml",
     "scp",
@@ -37,8 +37,7 @@
         "command": "ftml-editor.preview.refresh",
         "category": "FTML",
         "title": "%ftml-editor.preview.refresh%"
-      }
-      ,
+      },
       {
         "command": "ftml-editor.account.login",
         "category": "FTML",
@@ -174,5 +173,8 @@
     "eslint": "^8.56.0",
     "js-yaml": "^4.1.0",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "js-md5": "^0.8.3"
   }
 }
