@@ -3,7 +3,7 @@
   "publisher": "JustOneMorePieceOfCode",
   "displayName": "FTML Editor",
   "description": "RuFoundation FTML branch editor with live preview",
-  "repository": "not now",
+  "repository": "https://github.com/btomaev/ftml-editor",
   "version": "0.0.17",
   "keywords": [
     "ftml",
