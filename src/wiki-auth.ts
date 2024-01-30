@@ -145,6 +145,36 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
         }
     }
 
+    public async fetchArticle(session: WikiSession, pageId: string) {
+        type SerializedArticle = {
+            pageId: string,
+            title: string,
+            source: string,
+            tags: string[]
+            parent: string
+            locked: boolean
+        }
+        const response = await fetch(`https://scpfoundation.net/api/articles/${pageId}`, {
+            method: 'GET',
+        })
+        .catch(e => {
+            throw 'Ошибка сети.';
+        });
+
+        if (!response) return false;
+
+        switch (response.status) {
+            case 200:
+                return (await response.json()) as SerializedArticle;
+            case 403:
+                throw 'Недостаточно прав.';
+            case 404:
+                throw 'Страницы не существует.';
+            default:
+                throw 'Ошибка загрузки.';
+        }
+    }
+
     private async getCSRFMiddlewareToken() {
         const response = await fetch('https://scpfoundation.net/-/login', {
             method: 'GET'

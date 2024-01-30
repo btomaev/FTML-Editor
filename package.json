@@ -49,9 +49,14 @@
         "title": "%ftml-editor.account.logout%"
       },
       {
-        "command": "ftml-editor.account.publish",
+        "command": "ftml-editor.article.publish",
         "category": "FTML",
-        "title": "%ftml-editor.account.publish%"
+        "title": "%ftml-editor.article.publish%"
+      },
+      {
+        "command": "ftml-editor.article.fetch",
+        "category": "FTML",
+        "title": "%ftml-editor.article.fetch%"
       }
     ],
     "menus": {
@@ -70,6 +75,11 @@
           "when": "resourceLangId == ftml",
           "command": "ftml-editor.preview.refresh",
           "group": "2_ftml"
+        },
+        {
+          "when": "resourceLangId == ftml",
+          "command": "ftml-editor.article.fetch",
+          "group": "2_ftml"
         }
       ],
       "editor/title": [
@@ -86,6 +96,16 @@
         {
           "when": "resourceLangId == ftml",
           "command": "ftml-editor.preview.refresh",
+          "group": "2_ftml"
+        },
+        {
+          "when": "resourceLangId == ftml",
+          "command": "ftml-editor.article.publish",
+          "group": "2_ftml"
+        },
+        {
+          "when": "resourceLangId == ftml",
+          "command": "ftml-editor.article.fetch",
           "group": "2_ftml"
         }
       ],

@@ -77,7 +77,7 @@ export function activate(context: vscode.ExtensionContext) {
 		});
     });
 
-	const cmd_publish = vscode.commands.registerCommand('ftml-editor.account.publish', async () => {
+	const cmd_publish = vscode.commands.registerCommand('ftml-editor.article.publish', async () => {
 		if (vscode.window.activeTextEditor == null) return;
 
 		const document = vscode.window.activeTextEditor.document;
@@ -141,6 +141,47 @@ export function activate(context: vscode.ExtensionContext) {
 		}});
     });
 
+	const cmd_fetch = vscode.commands.registerCommand('ftml-editor.article.fetch', async () => {
+		if (vscode.window.activeTextEditor == null) return;
+
+		const document = vscode.window.activeTextEditor.document;
+		const fetchCancel = 'Загрузка отменена.';
+		const fetchError = 'Ошибка загрузки.';
+
+		vscode.authentication.getSession(AUTH_TYPE, [], {
+			clearSessionPreference: true,
+			createIfNone: true,
+		})
+		.then(async session => { try {
+			if (session) {
+				const pageId = await vscode.window.showInputBox({
+					title: 'ID страницы',
+					placeHolder: "scp-XXXX",
+					prompt: 'Вводите внимательно!',
+					ignoreFocusOut: true
+				});
+		
+				if (!pageId) throw fetchCancel;
+				
+				const aritcle = await AuthProvider.fetchArticle(session as WikiSession, pageId);
+
+				if (!aritcle) throw fetchError;
+
+				await vscode.workspace.fs.writeFile(document.uri, new TextEncoder().encode(aritcle.source));
+				
+				await saveMeta(document.uri, {
+					pageId: aritcle.pageId,
+					title: aritcle.title
+				} as FileMeta);
+
+				vscode.window.showInformationMessage('Статья успешно ззагружена.');
+			}
+		} catch (error) {
+			if (error != null)
+			vscode.window.showErrorMessage(error.toString());
+		}});
+    });
+
 	const cmd_refresh = vscode.commands.registerCommand('ftml-editor.preview.refresh', async () => {
 		for (var i=0; i<PreviewPanelsList.length; i++) {
 			const pp = PreviewPanelsList[i];
@@ -181,6 +222,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(cmd_login);
 	context.subscriptions.push(cmd_logout);
 	context.subscriptions.push(cmd_publish);
+	context.subscriptions.push(cmd_fetch);
 	context.subscriptions.push(cmd_refresh);
 	context.subscriptions.push(cmd_preview);
 	context.subscriptions.push(cmd_preview_live);

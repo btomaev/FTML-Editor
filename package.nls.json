@@ -4,5 +4,7 @@
     "ftml-editor.preview.refresh": "Refresh visible previews",
     "ftml-editor.account.login": "Log in to scpfoundation.net account",
     "ftml-editor.account.logout": "Log out of scpfoundation.net account",
-    "ftml-editor.account.publish": "Publish article on scpfoundation.net"
+    "ftml-editor.article.publish": "Publish article on scpfoundation.net",
+    "ftml-editor.article.fetch": "Fetch article from scpfoundation.net"
+
 }
