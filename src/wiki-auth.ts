@@ -121,7 +121,7 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
         const data = {
             pageId: pageId,
             title: title,
-            source: content,
+            source: content.trim(),
             comment: comment ? `${comment}\n\n${this.commentPostfix}` : this.commentPostfix
         }
 

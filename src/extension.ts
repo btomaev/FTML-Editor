@@ -148,6 +148,8 @@ export function activate(context: vscode.ExtensionContext) {
 		const fetchCancel = 'Загрузка отменена.';
 		const fetchError = 'Ошибка загрузки.';
 
+		const meta = await loadMeta(document.uri);
+
 		vscode.authentication.getSession(AUTH_TYPE, [], {
 			clearSessionPreference: true,
 			createIfNone: true,
@@ -158,6 +160,7 @@ export function activate(context: vscode.ExtensionContext) {
 					title: 'ID страницы',
 					placeHolder: "scp-XXXX",
 					prompt: 'Вводите внимательно!',
+					value: meta.pageId,
 					ignoreFocusOut: true
 				});
 		
