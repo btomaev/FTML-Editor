@@ -202,8 +202,8 @@ export class FTMLPreviewPanel {
 			</script>
 		`);
 
-		html = 
-		html.replace('\'/-/', `${webview.asWebviewUri(asset('/css/test.png', this._context))}`);
+		// html = 
+		// html.replace('\'/-/', `${webview.asWebviewUri(asset('/css/test.png', this._context))}`);
 
 		webview.html = html;
 

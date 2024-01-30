@@ -1,12 +1,12 @@
 import * as vscode from 'vscode';
 import { FTMLPreviewPanel, PreviewPanelsList } from "./preview-panel";
 import { AUTH_TYPE, WikiAuthProvider, WikiSession } from './wiki-auth';
-import { loadMeta, saveMeta, FileMeta } from './files-meta';
+import { loadMeta, saveMeta, FileMeta, migrateMeta } from './files-meta';
 import { md5 } from 'js-md5';
 
 async function checkPasskey(secrets: vscode.SecretStorage) {
 	let passkey = await secrets.get('preview.passkey');
-	
+
 	if (!passkey) return false;
 	if (md5(passkey) != '0d7cfa875ed93012a2263112124c0975') {
 		vscode.window.showErrorMessage('Wrong passkey, access denied');
@@ -34,7 +34,8 @@ async function startPreview(context: vscode.ExtensionContext, isLive: boolean) {
 		title: 'ID страницы',
 		placeHolder: "scp-XXXX",
 		prompt: 'Оставьте пустым для новой стрваницы',
-		value: meta.pageId
+		value: meta.pageId,
+		ignoreFocusOut: true
 	});
 
 	await saveMeta(document.uri, {
@@ -167,6 +168,13 @@ export function activate(context: vscode.ExtensionContext) {
 			webviewPanel.webview.html = state.html;
 			const pp = new FTMLPreviewPanel(webviewPanel, document, state.pageId, context, state.html=="", state.isLive);
 			PreviewPanelsList.push(pp);
+		}
+	});
+
+	vscode.workspace.onDidRenameFiles(async e => {
+		for(let i=0; i<e.files.length; i++){
+			const file = e.files[i];
+			await migrateMeta(file.oldUri, file.newUri);
 		}
 	});
 

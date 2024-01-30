@@ -1,5 +1,4 @@
 import * as vscode from 'vscode';
-import * as webIncludes from "./web-includes.json";
 import { FetchResponse } from './utils';
 
 export function asset(path: string, context: vscode.ExtensionContext) {
@@ -30,8 +29,8 @@ export async function renderFtml(ftml: string, pageId: string, title: string) {
 
 	let result = ((await response.json()) as FetchResponse).content;
 
-    result = result.replace('src="//', 'src="https://');
-    result = result.replace('src="/', 'src="https://scpfoundation.net/');
+    result = result.replaceAll('src="//', 'src="https://');
+    result = result.replaceAll('src="/', 'src="https://scpfoundation.net/');
 
     return result;
 }
