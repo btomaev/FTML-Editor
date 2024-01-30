@@ -12,6 +12,9 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
     private _sessionChangeEmitter = new EventEmitter<AuthenticationProviderAuthenticationSessionsChangeEvent>();
     private _sessions = new Map<string, WikiSession>();
     private _disposable: Disposable;
+
+    private readonly contentWatermark = '[!-- Эта статья создана с помощью FTML Editor - удобного и функцианального расширения для vscode --]';
+    private readonly commentPostfix = '(Опубликовано из расширения FTML Editor)';
   
     constructor(private readonly context: ExtensionContext) {
         this._disposable = Disposable.from(
@@ -110,13 +113,16 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
     }
 
     public async publishArticle(session: WikiSession, pageId: string, title: string, content: string, comment?: string) {
-        const contentWatermark = '[!-- Эта статья создана с помощью FTML Editor - удобного и функцианального расширения для vscode --]';
-        const commentPostfix = '(Опубликовано из расширения FTML Editor)';
+        const article = await this.fetchArticle(session, pageId);
+
+        if (article.source.indexOf(this.contentWatermark) < 0)
+        content = `${this.contentWatermark}\n\n${content}`;
+
         const data = {
             pageId: pageId,
             title: title,
-            source: `${contentWatermark}\n\n${content}`,
-            comment: comment ? `${comment}\n\n${commentPostfix}` : commentPostfix
+            source: content,
+            comment: comment ? `${comment}\n\n${this.commentPostfix}` : this.commentPostfix
         }
 
         const response = await fetch(`https://scpfoundation.net/api/articles/${pageId}`, {
@@ -161,11 +167,13 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
             throw 'Ошибка сети.';
         });
 
-        if (!response) return false;
+        if (!response) throw 'Ошибка получения данных страницы.';
 
         switch (response.status) {
             case 200:
-                return (await response.json()) as SerializedArticle;
+                let article = (await response.json()) as SerializedArticle;
+                article.source = article.source.trim()
+                return article;
             case 403:
                 throw 'Недостаточно прав.';
             case 404:
