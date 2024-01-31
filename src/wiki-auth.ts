@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import {authentication, AuthenticationProvider, AuthenticationProviderAuthenticationSessionsChangeEvent, AuthenticationSession, Disposable, EventEmitter, ExtensionContext } from "vscode";
+import { SerializedArticle } from './utils';
 
 export const AUTH_TYPE = `ruscpwiki`;
 export const AUTH_NAME = `RuSCP WiKi`;
@@ -152,14 +153,6 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
     }
 
     public async fetchArticle(session: WikiSession, pageId: string) {
-        type SerializedArticle = {
-            pageId: string,
-            title: string,
-            source: string,
-            tags: string[]
-            parent: string
-            locked: boolean
-        }
         const response = await fetch(`https://scpfoundation.net/api/articles/${pageId}`, {
             method: 'GET',
         })

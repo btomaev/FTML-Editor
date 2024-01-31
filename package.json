@@ -4,7 +4,7 @@
   "displayName": "FTML Editor",
   "description": "RuFoundation FTML branch editor with live preview",
   "repository": "https://github.com/btomaev/ftml-editor",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "keywords": [
     "ftml",
     "scp",
