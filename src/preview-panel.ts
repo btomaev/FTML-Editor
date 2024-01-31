@@ -140,11 +140,8 @@ export class FTMLPreviewPanel {
         if (!this.isLive) return;
         clearTimeout(this._updateTimer);
 
-        if (this._document.getText() && e.contentChanges.length) {
-            this._updateTimer = setTimeout(() => {this.update()}, FTMLPreviewPanel.updateDelay);
-        } else {
-            clearTimeout(this._updateTimer);
-        }
+        if (this._document.getText() && e.contentChanges.length)
+        this._updateTimer = setTimeout(() => {this.update()}, FTMLPreviewPanel.updateDelay);
     }
 
     public updateDocument(html: string, styles: string='') {
