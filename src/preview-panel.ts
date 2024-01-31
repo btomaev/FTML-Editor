@@ -104,7 +104,7 @@ export class FTMLPreviewPanel {
 
 	private _createStatusbarItem() {
 		let statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
-		statusBarItem.text = '$(refresh) Refresh preview';
+		statusBarItem.text = '$(refresh) Обновить предпросмотр';
 		statusBarItem.command = 'ftml-editor.preview.refresh';
 		this._context.subscriptions.push(this._statusBarItem);
 		// console.log(statusBarItem);
