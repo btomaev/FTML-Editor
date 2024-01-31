@@ -1,15 +1,15 @@
 export type FetchResponse = {
-    title: string;
-    content: string;
+    title: string,
+    content: string,
 };
 
 export type SerializedArticle = {
     pageId: string,
     title: string,
     source: string,
-    tags: string[]
-    parent: string
-    locked: boolean
+    tags: string[],
+    parent: string,
+    locked: boolean,
 }
 
 export function basename(docpath: string) {

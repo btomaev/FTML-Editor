@@ -1,6 +1,9 @@
 import * as vscode from 'vscode';
 import {authentication, AuthenticationProvider, AuthenticationProviderAuthenticationSessionsChangeEvent, AuthenticationSession, Disposable, EventEmitter, ExtensionContext } from "vscode";
 import { SerializedArticle } from './utils';
+import { loadMeta } from './files-meta';
+import { md5 } from 'js-md5';
+import { Serializer } from 'v8';
 
 export const AUTH_TYPE = `ruscpwiki`;
 export const AUTH_NAME = `RuSCP WiKi`;
@@ -114,9 +117,7 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
     }
 
     public async publishArticle(session: WikiSession, pageId: string, title: string, content: string, comment?: string) {
-        const article = await this.fetchArticle(session, pageId);
-
-        if (article.source.indexOf(this.contentWatermark) < 0)
+        if (content.indexOf(this.contentWatermark) < 0)
         content = `${this.contentWatermark}\n\n${content}`;
 
         const data = {
@@ -138,11 +139,13 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
             throw 'Ошибка сети.';
         });
 
-        if (!response) return false;
-
         switch (response.status) {
             case 200:
-                return true;
+                return {
+                    pageId: data.pageId,
+                    title: data.title,
+                    source: data.source
+                } as SerializedArticle;
             case 403:
                 throw 'Недостаточно прав.';
             case 404:
@@ -174,6 +177,11 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
             default:
                 throw 'Ошибка загрузки.';
         }
+    }
+
+    public async isGreenLight(document: vscode.TextDocument, article: SerializedArticle) {
+        const meta = await loadMeta(document.uri);
+        return meta.hash != md5(article.source)
     }
 
     private async getCSRFMiddlewareToken() {

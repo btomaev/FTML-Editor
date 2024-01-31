@@ -132,9 +132,46 @@ export function activate(context: vscode.ExtensionContext) {
 
                 if (shure?.toLocaleLowerCase() != 'опубликовать') throw publishCancel;
 
-                const response = await AuthProvider.publishArticle(session as WikiSession, pageId, title ? title : '', document.getText(), comment);
+                const article = await AuthProvider.fetchArticle(session as WikiSession, pageId);
 
-                if (response) vscode.window.showInformationMessage('Статья успешно опубликована.');
+                const apply = async () => {
+                    const publishedArticle = await AuthProvider.publishArticle(session as WikiSession, pageId, title ? title : '', document.getText(), comment);
+
+                    await saveMeta(document.uri, {
+                        hash: md5(publishedArticle.source)
+                    } as FileMeta);
+
+                    vscode.window.showInformationMessage('Статья успешно опубликована.');
+                }
+
+                if (await AuthProvider.isGreenLight(document, article)) {
+                    const diffUri = vscode.Uri.from({
+                        scheme: 'wikitext',
+                        path: article.source,
+                    });
+
+                    const diffDoc = await vscode.workspace.openTextDocument(diffUri);
+                    await vscode.languages.setTextDocumentLanguage(diffDoc, 'ftml');
+
+                    await vscode.commands.executeCommand(
+                        'vscode.diff',
+                        document.uri,
+                        diffUri,
+                        `${basename(document.fileName)} → ${article.pageId}`
+                    );
+
+                    const answer = await vscode.window.showWarningMessage(`Текст статьи ${pageId} был изменен на сервере, хотите продолжить публикацию?.`, 'Опубликовать', 'Отмена');
+
+                    switch (answer) {
+                        case 'Опубликовать':
+                            await document.save().then(apply);
+                            break;
+                        case 'Отмена':
+                            throw publishCancel;
+                    }
+                } else {
+                    await document.save().then(apply);
+                }
             }
         } catch (error) {
             if (error != null)
@@ -174,60 +211,50 @@ export function activate(context: vscode.ExtensionContext) {
         
                 if (!pageId) throw fetchCancel;
                 
-                const aritcle = await AuthProvider.fetchArticle(session as WikiSession, pageId);
+                const article = await AuthProvider.fetchArticle(session as WikiSession, pageId);
 
-                if (!aritcle) throw fetchError;
+                if (!article) throw fetchError;
+
+                const apply = async () => {
+                    await vscode.workspace.fs.writeFile(document.uri, new TextEncoder().encode(article.source));
+                    await vscode.languages.setTextDocumentLanguage(document, 'ftml');
+
+                    await saveMeta(document.uri, {
+                        pageId: article.pageId,
+                        title: article.title,
+                        hash: md5(article.source)
+                    } as FileMeta);
+    
+                    await vscode.window.showInformationMessage('Статья успешно ззагружена.');
+                };
 
                 if (document.getText()) {
                     const diffUri = vscode.Uri.from({
                         scheme: 'wikitext',
-                        path: aritcle.source,
+                        path: article.source,
                     });
 
                     const diffDoc = await vscode.workspace.openTextDocument(diffUri);
                     await vscode.languages.setTextDocumentLanguage(diffDoc, 'ftml');
 
                     await vscode.commands.executeCommand(
-                        "vscode.diff",
+                        'vscode.diff',
                         document.uri,
                         diffUri,
-                        `${basename(document.fileName)} ← ${aritcle.pageId}`
+                        `${basename(document.fileName)} ← ${article.pageId}`
                     );
 
-                    const answer = await vscode.window.showWarningMessage(`Файл ${basename(document.fileName)} уже содержит текст, хотите его заменить?.`, "Заменить", "Отмена");
+                    const answer = await vscode.window.showWarningMessage(`Файл ${basename(document.fileName)} уже содержит текст, хотите его заменить?.`, 'Заменить', 'Отмена');
 
                     switch (answer) {
                         case 'Заменить':
-                            await document.save()
-                            .then(async s => {
-                                await vscode.workspace.fs.writeFile(document.uri, new TextEncoder().encode(aritcle.source));
-                                await vscode.languages.setTextDocumentLanguage(document, 'ftml');
-
-                                await saveMeta(document.uri, {
-                                    pageId: aritcle.pageId,
-                                    title: aritcle.title
-                                } as FileMeta);
-                    
-                                await vscode.window.showInformationMessage('Статья успешно ззагружена.');
-                            })
+                            await document.save().then(apply)
                             break;
                         case 'Отмена':
                             throw fetchCancel;
                     }
                 } else {
-                    await document.save()
-                    .then(async s => {
-                        await vscode.workspace.fs.writeFile(document.uri, new TextEncoder().encode(aritcle.source));
-                    
-                        await saveMeta(document.uri, {
-                            pageId: aritcle.pageId,
-                            title: aritcle.title
-                        } as FileMeta);
-
-                        await vscode.languages.setTextDocumentLanguage(document, 'ftml');
-        
-                        await vscode.window.showInformationMessage('Статья успешно ззагружена.');
-                    });
+                    await document.save().then(apply);
                 }
             }
         } catch (error) {

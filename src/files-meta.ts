@@ -2,7 +2,8 @@ import * as vscode from 'vscode';
 
 export type FileMeta = {
     pageId: string,
-    title: string
+    title: string,
+    hash: string,
 }
 
 export async function migrateMeta(oldUri: vscode.Uri, newUri: vscode.Uri) {
