@@ -185,7 +185,6 @@ export function activate(context: vscode.ExtensionContext) {
                     });
 
                     const diffDoc = await vscode.workspace.openTextDocument(diffUri);
-
                     await vscode.languages.setTextDocumentLanguage(diffDoc, 'ftml');
 
                     await vscode.commands.executeCommand(
@@ -203,7 +202,6 @@ export function activate(context: vscode.ExtensionContext) {
                             .then(async s => {
                                 await vscode.workspace.fs.writeFile(document.uri, new TextEncoder().encode(aritcle.source));
                                 await vscode.languages.setTextDocumentLanguage(document, 'ftml');
-
 
                                 await saveMeta(document.uri, {
                                     pageId: aritcle.pageId,

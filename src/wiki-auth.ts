@@ -14,7 +14,7 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
     private _sessions = new Map<string, WikiSession>();
     private _disposable: Disposable;
 
-    private readonly contentWatermark = '[!-- Эта статья создана с помощью FTML Editor - удобного и функцианального расширения для vscode --]';
+    private readonly contentWatermark = '[!-- Эта статья создана с помощью FTML Editor - удобного и функционального расширения для vscode --]';
     private readonly commentPostfix = '(Опубликовано из расширения FTML Editor)';
   
     constructor(private readonly context: ExtensionContext) {
