@@ -106,7 +106,6 @@ export class FTMLPreviewPanel {
         statusBarItem.text = '$(refresh) Обновить предпросмотр';
         statusBarItem.command = 'ftml-editor.preview.refresh';
         this._context.subscriptions.push(this._statusBarItem);
-        // console.log(statusBarItem);
         return statusBarItem;
     }
 
@@ -153,8 +152,6 @@ export class FTMLPreviewPanel {
             cmd: type, 
             content: html 
         });
-
-        // console.log(html);
     }
 
     public reloadDocument() {
@@ -215,7 +212,7 @@ export class FTMLPreviewPanel {
     public collectPrefetchable() {
         const webview = this.panel.webview;
 
-        const prefetchable = webview.html.matchAll(RegExp("url\(\s*[\'|\"](.*)[\'|\"]\s*\)"));
+        const prefetchable = webview.html.matchAll(RegExp('url\(\s*[\'|\"](.*)[\'|\"]\s*\)'));
 
         return prefetchable;
     }

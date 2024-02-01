@@ -295,12 +295,6 @@ export function activate(context: vscode.ExtensionContext) {
 
     vscode.workspace.registerTextDocumentContentProvider("wikitext", new WikiTextContentProvider());
 
-    // vscode.workspace.onDidCloseTextDocument(e =>{
-    //     if (e.uri.scheme == "wikidot-rev" && WdRevUriToSourceEditor.has(e.uri.toString())) {
-    //         WdRevUriToSourceEditor.delete(e.uri.toString());
-    //     }
-    // })
-
     vscode.workspace.onWillRenameFiles(async e => {
         for(let i=0; i<e.files.length; i++){
             const file = e.files[i];

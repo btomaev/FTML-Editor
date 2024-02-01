@@ -13,7 +13,7 @@ export type SerializedArticle = {
 }
 
 export function basename(docpath: string) {
-    docpath = docpath.replaceAll("\\", "/");
+    docpath = docpath.replaceAll('\\', '/');
     const match = docpath.match(/\/?([^\/]*)$/);
     const docname = match![1];
 

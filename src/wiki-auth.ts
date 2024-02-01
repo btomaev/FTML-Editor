@@ -3,7 +3,6 @@ import {authentication, AuthenticationProvider, AuthenticationProviderAuthentica
 import { SerializedArticle } from './utils';
 import { loadMeta } from './files-meta';
 import { md5 } from 'js-md5';
-import { Serializer } from 'v8';
 
 export const AUTH_TYPE = `ruscpwiki`;
 export const AUTH_NAME = `RuSCP WiKi`;
@@ -117,8 +116,8 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
     }
 
     public async publishArticle(session: WikiSession, pageId: string, title: string, content: string, comment?: string) {
-        if (content.indexOf(this.contentWatermark) < 0)
-        content = `${this.contentWatermark}\n\n${content}`;
+        // if (content.indexOf(this.contentWatermark) < 0)
+        // content = `${this.contentWatermark}\n\n${content}`;
 
         const data = {
             pageId: pageId,
