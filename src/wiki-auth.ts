@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import {authentication, AuthenticationProvider, AuthenticationProviderAuthenticationSessionsChangeEvent, AuthenticationSession, Disposable, EventEmitter, ExtensionContext } from "vscode";
+import {authentication, AuthenticationProvider, AuthenticationProviderAuthenticationSessionsChangeEvent, AuthenticationSession, Disposable, EventEmitter, ExtensionContext } from 'vscode';
 import { SerializedArticle } from './utils';
 import { loadMeta } from './files-meta';
 import { md5 } from 'js-md5';
@@ -60,7 +60,7 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
         const password = await vscode.window.showInputBox({
             password: true,
             title: 'Введите пароль',
-            placeHolder: "******",
+            placeHolder: '******',
             prompt: 'FTMLEditor не хранит ваши учетные данные',
             ignoreFocusOut: true
         });
@@ -215,7 +215,7 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
             redirect: 'manual',
             headers: { 
                 Referer: 'https://scpfoundation.net/-/login',
-                Cookie: cookies.join(";")
+                Cookie: cookies.join(';')
             },
             body: form
         })
@@ -237,7 +237,7 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
             redirect: 'manual',
             headers: { 
                 Referer: 'https://scpfoundation.net/',
-                Cookie: cookies.join(";")
+                Cookie: cookies.join(';')
             },
         })
         .catch(e => {
