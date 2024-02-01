@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { FTMLPreviewPanel, PreviewPanelsList } from "./preview-panel";
+import { FTMLPreviewPanel, PreviewPanelsList } from './preview-panel';
 import { AUTH_TYPE, WikiAuthProvider, WikiSession } from './wiki-auth';
 import { loadMeta, saveMeta, FileMeta, migrateMeta } from './files-meta';
 import { md5 } from 'js-md5';
@@ -14,7 +14,7 @@ async function checkPasskey(secrets: vscode.SecretStorage) {
         vscode.window.showErrorMessage('Wrong passkey, access denied');
         const newPasskey = await vscode.window.showInputBox({
             title: 'Введите пароль для доступа к функции',
-            placeHolder: "******",
+            placeHolder: '******',
             prompt: 'Эта функция на стадии тестирования и доступна не всем\n',
             ignoreFocusOut: true
         });
@@ -34,7 +34,7 @@ async function startPreview(context: vscode.ExtensionContext, isLive: boolean) {
         
     const pageId = await vscode.window.showInputBox({
         title: 'ID страницы',
-        placeHolder: "scp-XXXX",
+        placeHolder: 'scp-XXXX',
         prompt: 'Оставьте пустым для новой стрваницы',
         value: meta.pageId,
         ignoreFocusOut: true
@@ -94,7 +94,7 @@ export function activate(context: vscode.ExtensionContext) {
                 
                 const pageId = await vscode.window.showInputBox({
                     title: 'ID страницы',
-                    placeHolder: "scp-XXXX",
+                    placeHolder: 'scp-XXXX',
                     prompt: 'Вводите внимательно!',
                     value: meta.pageId,
                     ignoreFocusOut: true
@@ -104,7 +104,7 @@ export function activate(context: vscode.ExtensionContext) {
             
                 const title = await vscode.window.showInputBox({
                     title: 'Заголовок страницв',
-                    placeHolder: "Новый заголовок",
+                    placeHolder: 'Новый заголовок',
                     prompt: 'Вводите внимательно! (может быть пустым)',
                     value: meta.title,
                     ignoreFocusOut: true
@@ -112,14 +112,14 @@ export function activate(context: vscode.ExtensionContext) {
 
                 const comment = await vscode.window.showInputBox({
                     title: 'Коментарий к публикации',
-                    placeHolder: "Исправлено что-то там",
+                    placeHolder: 'Исправлено что-то там',
                     prompt: 'Можно оставить пустым',
                     ignoreFocusOut: true
                 });
 
                 const shure = await vscode.window.showInputBox({
                     title: 'Вы уверены, что хотите опубликовать статью?',
-                    placeHolder: "Опубликовать",
+                    placeHolder: 'Опубликовать',
                     prompt: `ID страницы: ${pageId}, \nЗаголовок: ${title ? title : 'отсутствует'}, \nКомментарий: ${comment ? comment : 'отсутствует'}, \nЕсли да - напишите "опубликовать"`,
                     ignoreFocusOut: true
                     
@@ -203,7 +203,7 @@ export function activate(context: vscode.ExtensionContext) {
             if (session) {
                 const pageId = await vscode.window.showInputBox({
                     title: 'ID страницы',
-                    placeHolder: "scp-XXXX",
+                    placeHolder: 'scp-XXXX',
                     prompt: 'Вводите внимательно!',
                     value: meta.pageId,
                     ignoreFocusOut: true
@@ -288,12 +288,12 @@ export function activate(context: vscode.ExtensionContext) {
         async deserializeWebviewPanel(webviewPanel: vscode.WebviewPanel, state: any) {
             let document = await vscode.workspace.openTextDocument(state.fileName);
             webviewPanel.webview.html = state.html;
-            const pp = new FTMLPreviewPanel(webviewPanel, document, state.pageId, context, state.html=="", state.isLive);
+            const pp = new FTMLPreviewPanel(webviewPanel, document, state.pageId, context, state.html=='', state.isLive);
             PreviewPanelsList.push(pp);
         }
     });
 
-    vscode.workspace.registerTextDocumentContentProvider("wikitext", new WikiTextContentProvider());
+    vscode.workspace.registerTextDocumentContentProvider('wikitext', new WikiTextContentProvider());
 
     vscode.workspace.onWillRenameFiles(async e => {
         for(let i=0; i<e.files.length; i++){

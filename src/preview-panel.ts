@@ -35,7 +35,7 @@ export class FTMLPreviewPanel {
                 enableFindWidget: true,
                 enableForms: true,
                 localResourceRoots: [
-                    vscode.Uri.joinPath(context.extensionUri, "web-static")
+                    vscode.Uri.joinPath(context.extensionUri, 'web-static')
                 ]
             }
         );
@@ -162,8 +162,8 @@ export class FTMLPreviewPanel {
         
         html = 
         html.replace('%%FIRST_HAVE_PIECE%%', `
-            ${styles.join("\n")}
-            ${scripts.join("\n")}
+            ${styles.join('\n')}
+            ${scripts.join('\n')}
         `);
 
         html = 
