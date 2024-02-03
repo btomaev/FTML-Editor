@@ -19,3 +19,7 @@ export function basename(docpath: string) {
 
     return docname;
 }
+
+export function capitalize(text: string) {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+}

@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { FetchResponse } from './utils';
+import { NetworkError } from './errors';
 
 export function asset(path: string, context: vscode.ExtensionContext) {
     return vscode.Uri.joinPath( 
@@ -20,7 +21,7 @@ export async function renderFtml(ftml: string, pageId: string, title: string) {
     })
     .then(result => result)
     .catch(e => {
-       throw 'Сетевая ошибка.';
+       throw new NetworkError();
     });
 
     if (!response) {

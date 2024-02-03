@@ -3,6 +3,7 @@ import {authentication, AuthenticationProvider, AuthenticationProviderAuthentica
 import { SerializedArticle } from './utils';
 import { loadMeta } from './files-meta';
 import { md5 } from 'js-md5';
+import { AccessDeniedError, ActionCanceledError, AuthorizationError, NetworkError, PageDoesNotExistError, PageLoadingError, PagePublishingError, WrongCreditialsError } from './errors';
 
 export const AUTH_TYPE = `ruscpwiki`;
 export const AUTH_NAME = `RuSCP WiKi`;
@@ -41,12 +42,10 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
     }
 
     public async createSession(scope?: readonly string[]): Promise<WikiSession> {
-        const authCancel = 'Авторизация отменена.';
-        const authError = 'Ошибка авторизации.';
-        const netError = 'Ошибка сети.';
+        const authCancel = new ActionCanceledError('Авторизация отменена');
         const csrf = await this.getCSRFMiddlewareToken();
 
-        if (!csrf || !csrf.middlewaretoken || !csrf.cookies) throw authError;
+        if (!csrf || !csrf.middlewaretoken || !csrf.cookies) throw new AuthorizationError();
         
         const username = await vscode.window.showInputBox({
             title: 'Введите имя пользователя scpfoundation.net',
@@ -68,8 +67,6 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
         if (!password) throw authCancel;
 
         const cookies = await this.loginAndGetCookies(username, password, csrf.middlewaretoken, csrf.cookies);
-
-        if (!cookies) throw netError;
 
         const session: WikiSession = {
             scopes: [],
@@ -98,7 +95,7 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
             await this.storeSessions();
             this._sessionChangeEmitter.fire({ added: [], removed: [session], changed: [] });
         } else {
-            throw 'Вход в аккаунт не выполнен.'
+            throw 'Вход в аккаунт не выполнен'
         }
     }
 
@@ -135,7 +132,7 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
             body: JSON.stringify(data)
         })
         .catch(e => {
-            throw 'Ошибка сети.';
+            throw new NetworkError();
         });
 
         switch (response.status) {
@@ -146,11 +143,11 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
                     source: data.source
                 } as SerializedArticle;
             case 403:
-                throw 'Недостаточно прав.';
+                throw new AccessDeniedError();
             case 404:
-                throw 'Страницы не существует.';
+                throw new PageDoesNotExistError();
             default:
-                throw 'Ошибка публикации.';
+                throw new PagePublishingError();
         }
     }
 
@@ -159,10 +156,8 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
             method: 'GET',
         })
         .catch(e => {
-            throw 'Ошибка сети.';
+            throw new NetworkError();
         });
-
-        if (!response) throw 'Ошибка получения данных страницы.';
 
         switch (response.status) {
             case 200:
@@ -170,11 +165,47 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
                 article.source = article.source.trim()
                 return article;
             case 403:
-                throw 'Недостаточно прав.';
+                throw new AccessDeniedError();
             case 404:
-                throw 'Страницы не существует.';
+                throw new PageDoesNotExistError();
             default:
-                throw 'Ошибка загрузки.';
+                throw new PageLoadingError();
+        }
+    }
+
+    public async createNewPage(session: WikiSession, pageId: string, title: string, content: string, comment?: string) {
+        let data = {
+            pageId: pageId,
+            title: title,
+            source: content,
+            comment: comment ? `${comment}\n\n${this.commentPostfix}` : `Создана новая страница ${this.commentPostfix}`
+        }
+
+        const response = await fetch('https://scpfoundation.net/api/articles/new', {
+            method: 'POST',
+            redirect: 'manual',
+            headers: { 
+                Referer: `https://scpfoundation.net/${pageId}`,
+                Cookie: session.cookies.join(';')
+            },
+            body: JSON.stringify(data)
+        })
+        .then(result => result)
+        .catch(e => {
+            throw new NetworkError();
+        });
+
+        switch (response.status) {
+            case 201:
+                return {
+                    pageId: data.pageId,
+                    title: data.title,
+                    source: data.source
+                } as SerializedArticle;
+            case 403:
+                throw new AccessDeniedError();
+            default:
+                throw new PageLoadingError();
         }
     }
 
@@ -189,10 +220,8 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
         })
         .then(result => result)
         .catch(e => {
-            throw 'Ошибка сети.';
+            throw new NetworkError();
         });
-
-        if (!response) return null;
   
         let result = (await response.text());
     
@@ -221,14 +250,15 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
         })
         .then(result => result)
         .catch(e => {
-            throw 'Ошибка сети..';
+            throw new NetworkError();
         });
 
-        if (!response) return null;
-
-        if (response.status != 302) throw 'Неверные учетные данные.'
-
-        return response.headers.getSetCookie();
+        switch (response.status) {
+            case 302:
+                return response.headers.getSetCookie();
+            default:
+                throw new WrongCreditialsError();
+        }
     }
 
     private async logout(cookies: string[]) {
@@ -241,7 +271,7 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
             },
         })
         .catch(e => {
-            throw 'Ошибка сети..';
+            throw new NetworkError();
         });
     }
 }
