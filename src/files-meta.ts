@@ -6,48 +6,69 @@ export type FileMeta = {
     hash: string,
 }
 
-export async function migrateMeta(oldUri: vscode.Uri, newUri: vscode.Uri) {
-    if (oldUri.scheme == 'untitled') return false;
-    
+export async function getMetaUri(documentUri: vscode.Uri) {
+    const metaUri = vscode.Uri.parse(documentUri.toString() + '.meta');
+    return metaUri;
+}
+
+export async function hasMeta(documentUri: vscode.Uri) {
+    const metaUri = await getMetaUri(documentUri);
+
     try {
-        const oldMetaUri = vscode.Uri.parse(oldUri.toString() + '.meta');
-        const newMetaUri = vscode.Uri.parse(newUri.toString() + '.meta');
-        vscode.workspace.fs.rename(oldMetaUri, newMetaUri);
+        await vscode.workspace.fs.readFile(metaUri);
         return true;
     } catch {
         return false;
     }
 }
 
+export async function migrateMeta(oldUri: vscode.Uri, newUri: vscode.Uri) {
+    if (oldUri.scheme == 'untitled') return false;
+
+    if (!(await hasMeta(oldUri))) return false;
+    
+    const oldMetaUri = await getMetaUri(oldUri);
+    const newMetaUri = await getMetaUri(newUri);
+
+    const edit = new vscode.WorkspaceEdit();
+    edit.renameFile(oldMetaUri, newMetaUri);
+    await vscode.workspace.applyEdit(edit);
+    return true;
+}
+
 export async function saveMeta(documentUri: vscode.Uri, value: FileMeta) {
-    if (documentUri.scheme == 'untitled') return;
-    const metaUri = vscode.Uri.parse(documentUri.toString() + '.meta');
+    const metaUri = await getMetaUri(documentUri);
 
     let metaData: FileMeta = {} as FileMeta;
 
-    try {
+    if (await hasMeta(documentUri)) {
         const document = await vscode.workspace.openTextDocument(metaUri);
+        const text = document.getText();
     
-        metaData = JSON.parse(document.getText()) as FileMeta;
-    } catch {}
+        if (text)
+            metaData = JSON.parse(text) as FileMeta;
+    
+        metaData = Object.assign({}, metaData, value);
+    }
 
-    metaData = Object.assign({}, metaData, value);
     
-    await vscode.workspace.fs.writeFile(metaUri, new TextEncoder().encode(JSON.stringify(metaData)));
+    if (metaUri.scheme == 'untitled') {
+        // TODO: implement meta files support for untitled files
+    } else {
+        await vscode.workspace.fs.writeFile(metaUri, new TextEncoder().encode(JSON.stringify(metaData)));
+    }
 }
 
 export async function loadMeta(documentUri: vscode.Uri) {
-    const metaUri = vscode.Uri.parse(documentUri.toString() + '.meta');
+    const metaUri = await getMetaUri(documentUri);
 
     let metaData: FileMeta = {} as FileMeta;
     
-    try {
-        if (documentUri.scheme != 'untitled') {
-            const document = await vscode.workspace.openTextDocument(metaUri);
-        
-            metaData = JSON.parse(document.getText()) as FileMeta;
-        }
-    } catch {}
+    if (await hasMeta(documentUri)) {
+        const document = await vscode.workspace.openTextDocument(metaUri);
+    
+        metaData = JSON.parse(document.getText()) as FileMeta;
+    }
 
     return metaData;
 }

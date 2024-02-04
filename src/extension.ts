@@ -5,7 +5,7 @@ import { loadMeta, saveMeta, FileMeta, migrateMeta } from './files-meta';
 import { md5 } from 'js-md5';
 import { basename, capitalize } from './utils';
 import { WikiTextContentProvider } from './wikitext-contetn-provider';
-import { ActionCanceledError, PageDoesNotExistError, PageLoadingError, WrongCreditialsError } from './errors';
+import { ActionCanceledError, PageDoesNotExistError } from './errors';
 
 async function checkPasskey(secrets: vscode.SecretStorage) {
     let passkey = await secrets.get('preview.passkey');
@@ -33,21 +33,27 @@ async function startPreview(context: vscode.ExtensionContext, isLive: boolean) {
 
     const meta = await loadMeta(document.uri);
         
-    const pageId = await vscode.window.showInputBox({
-        title: 'ID страницы',
-        placeHolder: 'scp-XXXX',
-        prompt: 'Оставьте пустым для новой стрваницы',
-        value: meta.pageId,
-        ignoreFocusOut: true
-    });
+    try {
+        const pageId = await vscode.window.showInputBox({
+            title: 'ID страницы',
+            placeHolder: 'scp-XXXX',
+            prompt: 'main - если не знаете что вписать',
+            value: meta.pageId ? meta.pageId : 'main',
+            ignoreFocusOut: true
+        });
 
-    await saveMeta(document.uri, {
-        pageId: pageId
-    } as FileMeta);
+        if (!pageId) throw new ActionCanceledError('Предпросмотр отменен');
 
-    const pp = FTMLPreviewPanel.startPeview(document, pageId ? pageId : 'main', isLive, context);
+        await saveMeta(document.uri, {
+            pageId: pageId
+        } as FileMeta);
 
-    PreviewPanelsList.push(pp);
+        const pp = FTMLPreviewPanel.startPeview(document, pageId ? pageId : 'main', isLive, context);
+
+        PreviewPanelsList.push(pp);
+    } catch (e) {
+        vscode.window.showErrorMessage((e as Error).message);
+    }
 }
 
 export function activate(context: vscode.ExtensionContext) {
@@ -83,6 +89,9 @@ export function activate(context: vscode.ExtensionContext) {
         if (vscode.window.activeTextEditor == null) return;
 
         const document = vscode.window.activeTextEditor.document;
+
+        if (document.languageId != 'ftml') return;
+
         const publishCancel = new ActionCanceledError('Публикация отменена');
 
         try {
@@ -209,16 +218,12 @@ export function activate(context: vscode.ExtensionContext) {
 
     const cmd_fetch = vscode.commands.registerCommand('ftml-editor.article.fetch', async () => {
         if (vscode.window.activeTextEditor == null) return;
+        
+        const fetchCancel = new ActionCanceledError('Загрузка отменена');
 
         const editor = vscode.window.activeTextEditor;
         const document = editor.document;
-        const fetchCancel = new ActionCanceledError('Загрузка отменена');
-
-        if (document.isUntitled) {
-            if (await document.save())
-            vscode.commands.executeCommand('ftml-editor.article.fetch');
-            return;
-        }
+        const text = document.getText();
 
         const meta = await loadMeta(document.uri);
 
@@ -241,9 +246,15 @@ export function activate(context: vscode.ExtensionContext) {
             const article = await AuthProvider.fetchArticle(session as WikiSession, pageId);
 
             const apply = async () => {
-                await vscode.workspace.fs.writeFile(document.uri, new TextEncoder().encode(article.source));
+                await editor.edit(editBuilder => {
+                    editBuilder.replace(new vscode.Range(
+                        document.positionAt(0),
+                        document.positionAt(text.length - 1)
+                    ), article.source)
+                });
+                
                 await vscode.languages.setTextDocumentLanguage(document, 'ftml');
-
+                
                 await saveMeta(document.uri, {
                     pageId: article.pageId,
                     title: article.title,
@@ -253,7 +264,7 @@ export function activate(context: vscode.ExtensionContext) {
                 await vscode.window.showInformationMessage('Статья успешно ззагружена');
             };
 
-            if (document.getText()) {
+            if (text) {
                 const diffUri = vscode.Uri.from({
                     scheme: 'wikitext',
                     path: article.source,
@@ -273,13 +284,13 @@ export function activate(context: vscode.ExtensionContext) {
 
                 switch (answer) {
                     case 'Заменить':
-                        await document.save().then(apply)
+                        await apply();
                         break;
                     case 'Отмена':
                         throw fetchCancel;
                 }
             } else {
-                await document.save().then(apply);
+                await apply();
             }
         } catch (e) {
             if (e != null)
@@ -317,9 +328,9 @@ export function activate(context: vscode.ExtensionContext) {
         }
     });
 
-    vscode.workspace.registerTextDocumentContentProvider('wikitext', new WikiTextContentProvider());
+    const wikitext_content_provider = vscode.workspace.registerTextDocumentContentProvider('wikitext', new WikiTextContentProvider());
 
-    vscode.workspace.onWillRenameFiles(async e => {
+    const files_rename_event = vscode.workspace.onDidRenameFiles(async e => {
         for(let i=0; i<e.files.length; i++){
             const file = e.files[i];
             await migrateMeta(file.oldUri, file.newUri);
@@ -334,6 +345,9 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(cmd_preview);
     context.subscriptions.push(cmd_preview_live);
     context.subscriptions.push(previewSerializer);
+
+    context.subscriptions.push(wikitext_content_provider);
+    context.subscriptions.push(files_rename_event);
 }
 
 export function deactivate() {}

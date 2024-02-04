@@ -60,6 +60,12 @@
       }
     ],
     "menus": {
+      "commandPalette": [
+        {
+          "when": "resourceLangId == ftml",
+            "command": "ftml-editor.article.publish"
+        }
+      ],
       "editor/context": [
         {
           "when": "resourceLangId == ftml",
@@ -77,7 +83,6 @@
           "group": "2_ftml"
         },
         {
-          "when": "resourceLangId == ftml",
           "command": "ftml-editor.article.fetch",
           "group": "2_ftml"
         }
@@ -104,7 +109,6 @@
           "group": "2_ftml"
         },
         {
-          "when": "resourceLangId == ftml",
           "command": "ftml-editor.article.fetch",
           "group": "2_ftml"
         }
