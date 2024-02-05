@@ -246,6 +246,8 @@ export function activate(context: vscode.ExtensionContext) {
             const article = await AuthProvider.fetchArticle(session as WikiSession, pageId);
 
             const apply = async () => {
+                const editor = await vscode.window.showTextDocument(document);
+                
                 await editor.edit(editBuilder => {
                     editBuilder.replace(new vscode.Range(
                         document.positionAt(0),
