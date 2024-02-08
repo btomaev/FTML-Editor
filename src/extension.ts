@@ -251,7 +251,7 @@ export function activate(context: vscode.ExtensionContext) {
                 await editor.edit(editBuilder => {
                     editBuilder.replace(new vscode.Range(
                         document.positionAt(0),
-                        document.positionAt(text.length - 1)
+                        document.positionAt(text.length)
                     ), article.source)
                 });
                 

@@ -47,10 +47,9 @@ export async function saveMeta(documentUri: vscode.Uri, value: FileMeta) {
     
         if (text)
             metaData = JSON.parse(text) as FileMeta;
-    
-        metaData = Object.assign({}, metaData, value);
     }
-
+    
+    metaData = Object.assign({}, metaData, value);
     
     if (metaUri.scheme == 'untitled') {
         // TODO: implement meta files support for untitled files
