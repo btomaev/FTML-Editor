@@ -271,7 +271,7 @@ export function activate(context: vscode.ExtensionContext) {
                     hash: md5(article.source)
                 } as FileMeta)
 
-                await vscode.window.showInformationMessage('Страница успешно ззагружена')
+                await vscode.window.showInformationMessage('Страница успешно загружена')
             }
 
             if (text) {
