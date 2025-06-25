@@ -1,1061 +1,1998 @@
 {
-  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-  "name": "FTML/Ru Foundation",
-  "scopeName": "text.ftml",
-  "patterns": [
-    {
-      "include": "#comment"
-    },
-    {
-      "include": "#yaml-frontmatter"
-    },
-    {
-      "include": "#block-module-css"
-    },
-    {
-      "include": "#block-html"
-    },
-    {
-      "include": "#block-math"
-    },
-    {
-      "include": "#inline-math"
-    },
-    {
-      "include": "#block-include"
-    },
-    {
-      "include": "#block-code"
-    },
-    {
-      "include": "#block-module-begin"
-    },
-    {
-      "include": "#block-module-end"
-    },
-    {
-      "include": "#block-standalone-value"
-    },
-    {
-      "include": "#block-standalone-value-map"
-    },
-    {
-      "include": "#block-standalone-map"
-    },
-    {
-      "include": "#block"
-    },
-    {
-      "include": "#block-value"
-    },
-    {
-      "include": "#block-map"
-    },
-    {
-      "include": "#block-align"
-    },
-    {
-      "include": "#inline-align"
-    },
-    {
-      "include": "#header"
-    },
-    {
-      "include": "#list"
-    },
-    {
-      "include": "#horizontal-rule"
-    },
-    {
-      "include": "#separator-rule"
-    },
-    {
-      "include": "#shorthands"
-    },
-    {
-      "include": "#links"
-    },
-    {
-      "include": "#table"
-    },
-    {
-      "include": "#page-variables"
-    },
-    {
-      "include": "#user-variables"
-    },
-    {
-      "include": "#deprecated-variables"
-    }
-  ],
-  "repository": {
-    "shorthands": {
-      "comments": "These are the shorthand markups.",
-      "patterns": [
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "scopeName": "text.ftml",
+    "name": "FTML/RuFoundation",
+    "patterns": [
         {
-          "include": "#color"
+            "include": "#comment"
         },
         {
-          "include": "#italics"
+            "include": "#block-module-css"
         },
         {
-          "include": "#bold"
+            "include": "#block-html"
         },
         {
-          "include": "#strikethrough"
+            "include": "#block-include"
         },
         {
-          "include": "#underline"
+            "include": "#block-code-css"
         },
         {
-          "include": "#subscript"
+            "include": "#include-variable"
         },
         {
-          "include": "#superscript"
+            "include": "#wikiscript-variable"
         },
         {
-          "include": "#raw"
+            "include": "#link-triple"
         },
         {
-          "include": "#teletype"
+            "include": "#link-single"
         },
         {
-          "include": "#escape"
+            "include": "#floating-reset"
         },
         {
-          "include": "#ruby-short"
+            "include": "#horizontal-rule"
+        },
+        {
+            "include": "#bold"
+        },
+        {
+            "include": "#italics"
+        },
+        {
+            "include": "#subscript"
+        },
+        {
+            "include": "#superscript"
+        },
+        {
+            "include": "#mdash"
+        },
+        {
+            "include": "#strikethrough"
+        },
+        {
+            "include": "#underline"
+        },
+        {
+            "include": "#teletype"
+        },
+        {
+            "include": "#html-char"
+        },
+        {
+            "include": "#raw"
+        },
+        {
+            "include": "#color"
+        },
+        {
+            "include": "#header"
+        },
+        {
+            "include": "#quote"
+        },
+        {
+            "include": "#nextline"
+        },
+        {
+            "include": "#nobreak"
+        },
+        {
+            "include": "#block-module-standalone"
+        },
+        {
+            "include": "#block-module-ListPages"
+        },
+        {
+            "include": "#block-module-CountPages"
+        },
+        {
+            "include": "#block-module-ListUsers"
+        },
+        {
+            "include": "#block-module-InterWiki"
+        },
+        {
+            "include": "#block-standalone-value"
+        },
+        {
+            "include": "#block-user"
+        },
+        {
+            "include": "#block-standalone-value-map"
+        },
+        {
+            "include": "#block-standalone-map"
+        },
+        {
+            "include": "#block-simple"
+        },
+        {
+            "include": "#block-value"
+        },
+        {
+            "include": "#block-map"
+        },
+        {
+            "include": "#block-anchor"
+        },
+        {
+            "include": "#block-a"
+        },
+        {
+            "include": "#block-div"
+        },
+        {
+            "include": "#block-span"
+        },
+        {
+            "include": "#block-ol"
+        },
+        {
+            "include": "#block-ul"
+        },
+        {
+            "include": "#block-li"
+        },
+        {
+            "include": "#block-align-left"
+        },
+        {
+            "include": "#block-align-right"
+        },
+        {
+            "include": "#block-align-center"
+        },
+        {
+            "include": "#block-align-stretch"
         }
-      ]
-    },
-    "links": {
-      "comments": "These are link syntaxes, and no other syntaxes are allowed within.",
-      "patterns": [
-        {
-          "include": "#link-triple"
+    ],
+    "repository": {
+        "comment": {
+            "name": "comment.block.ftml",
+            "begin": "\\[\\!\\-\\-",
+            "end": "\\-\\-\\]"
         },
-        {
-          "include": "#link-single"
-        }
-      ]
-    },
-    "attribute": {
-      "patterns": [
-        {
-          "name": "meta.attribute.style.ftml",
-          "begin": "style(?![\\w:-])",
-          "beginCaptures": {
-            "0": {
-              "name": "entity.other.attribute-name.ftml"
-            }
-          },
-          "end": "(?=\\s*+[^=\\s])",
-          "patterns": [
-            {
-              "name": "meta.embedded.line.css",
-              "begin": "=",
-              "beginCaptures": {
-                "0": {
-                  "name": "punctuation.separator.key-value.ftml"
-                }
-              },
-              "end": "(?<=(?<=[^\\\\=])\\\")(?=[\\s\\]]*)",
-              "patterns": [
+        "attribute": {
+            "patterns": [
                 {
-                  "name": "string.quoted.double.ftml",
-                  "begin": "\"",
-                  "beginCaptures": {
-                    "0": {
-                      "name": "punctuation.definition.string.begin.ftml"
-                    }
-                  },
-                  "end": "(\")",
-                  "endCaptures": {
-                    "0": {
-                      "name": "punctuation.definition.string.end.ftml"
+                    "name": "meta.attribute.style.ftml",
+                    "begin": "style(?![\\w:-])",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "entity.other.attribute-name.ftml"
+                        }
                     },
-                    "1": {
-                      "name": "source.css-ignored-vscode"
-                    }
-                  },
-                  "contentName": "source.css",
-                  "pattern": [
-                    {
-                      "include": "source.css"
-                    }
-                  ]
+                    "end": "(?=\\s*+[^=\\s])",
+                    "patterns": [
+                        {
+                            "name": "meta.embedded.line.css",
+                            "begin": "=",
+                            "beginCaptures": {
+                                "0": {
+                                    "name": "punctuation.separator.key-value.ftml"
+                                }
+                            },
+                            "end": "(?<=(?<=[^\\\\=])\\\")(?=[\\s\\]]*)",
+                            "patterns": [
+                                {
+                                    "name": "string.quoted.double.ftml",
+                                    "begin": "\"",
+                                    "beginCaptures": {
+                                        "0": {
+                                            "name": "punctuation.definition.string.begin.ftml"
+                                        }
+                                    },
+                                    "end": "(\")",
+                                    "endCaptures": {
+                                        "0": {
+                                            "name": "punctuation.definition.string.end.ftml"
+                                        },
+                                        "1": {
+                                            "name": "source.css-ignored-vscode"
+                                        }
+                                    },
+                                    "contentName": "source.css",
+                                    "pattern": [
+                                        {
+                                            "include": "source.css"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "match": "(\\S+?)\\s*(=)\\s*((\")(?:\\\\\"|[^\"])*(\"))",
+                    "captures": {
+                        "1": {
+                            "name": "entity.other.attribute-name.ftml"
+                        },
+                        "2": {
+                            "name": "punctuation.separator.key-value.ftml"
+                        },
+                        "3": {
+                            "name": "string.quoted.double.ftml"
+                        },
+                        "4": {
+                            "name": "punctuation.definition.string.begin.ftml"
+                        },
+                        "5": {
+                            "name": "punctuation.definition.string.end.ftml"
+                        },
+                        "6": {
+                            "name": "source.css-ignored-vscode"
+                        }
+                    },
+                    "name": "meta.attribute.$1.ftml"
                 }
-              ]
-            }
-          ]
+            ]
         },
-        {
-          "match": "(\\S+?)\\s*(=)\\s*((\\\")(?:[^\"]|\\\\\")*((\\\")))",
-          "captures": {
-            "1": {
-              "name": "entity.other.attribute-name.ftml"
+        "block-module-css": {
+            "name": "markup.inserted.text.css",
+            "begin": "(?i)(\\[\\[)\\s*(module(?:654)?)(:[^\\n\\s]+)?\\s+(css)(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(\\2)(\\3)\\s*(\\]\\])",
+            "contentName": "meta.embedded.block.css",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "4": {
+                    "name": "string.other.value.ftml"
+                },
+                "5": {
+                    "patterns": [
+                        {
+                            "include": "#attribute"
+                        }
+                    ]
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
             },
-            "2": {
-              "name": "punctuation.separator.key-value.ftml"
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
             },
-            "3": {
-              "name": "string.quoted.double.ftml"
+            "patterns": [
+                {
+                    "include": "source.css"
+                }
+            ]
+        },
+        "block-html": {
+            "name": "markup.inserted.text.html",
+            "begin": "(?i)(\\[\\[)\\s*(html)(:[^\\n\\s]+)?\\s*(\\]\\])",
+            "end": "(?i)(\\[\\[\\/)\\s*(html)(\\3)\\s*(\\]\\])",
+            "contentName": "meta.embedded.block.html",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
             },
-            "4": {
-              "name": "punctuation.definition.string.begin.ftml"
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
             },
-            "5": {
-              "name": "punctuation.definition.string.end.ftml"
+            "patterns": [
+                {
+                    "include": "text.html.derivative"
+                }
+            ]
+        },
+        "block-include": {
+            "name": "meta.block.structure.standalone.ftml",
+            "begin": "(?i)(\\[\\[)\\s*(include)\\s*\\s+([^\\s\\]]+)(?=\\s|\\]\\])",
+            "end": "\\]\\]",
+            "beginCaptures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "string.other.value.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
             },
-            "6": {
-              "name": "source.css-ignored-vscode"
-            }
-          },
-          "name": "meta.attribute.$1.ftml"
-        }
-      ]
-    },
-    "attribute-messy-include": {
-      "patterns": [
-        {
-          "match": "(\\|?)\\s*(\\S+?)\\s*(=)\\s*((?:(?!\\]\\])[^\\n\\|])+)\\s*(\\|?)",
-          "captures": {
-            "1": {
-              "name": "source.css-ignored-vscode"
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
             },
-            "2": {
-              "name": "entity.other.attribute-name.ftml"
+            "patterns": [
+                {
+                    "name": "meta.attribute.$2.ftml",
+                    "match": "(\\|?)\\s*(\\S+?)\\s*(=)\\s*((?:(?!\\]\\])[^\\n\\|])+)\\s*(\\|?)",
+                    "captures": {
+                        "1": {
+                            "name": "source.css-ignored-vscode"
+                        },
+                        "2": {
+                            "name": "entity.other.attribute-name.ftml"
+                        },
+                        "3": {
+                            "name": "punctuation.separator.key-value.ftml"
+                        },
+                        "4": {
+                            "name": "string.other.value.ftml"
+                        },
+                        "5": {
+                            "name": "source.css-ignored-vscode"
+                        }
+                    }
+                }
+            ]
+        },
+        "block-code-css": {
+            "name": "meta.block.structure.code.css.ftml",
+            "begin": "(?i)(\\[\\[)\\s*(code)(:[^\\n\\s]+)?\\s+((?:(?:(?:(?!\\]\\]).)+)\\s+)?(?:type\\s*=\\s*\"css\")(?:\\s+(?:(?:(?!\\]\\]).)+))?)\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(code)(\\3)\\s*(\\]\\])",
+            "contentName": "meta.embedded.block.css",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "4": {
+                    "patterns": [
+                        {
+                            "include": "#attribute"
+                        }
+                    ]
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
             },
-            "3": {
-              "name": "punctuation.separator.key-value.ftml"
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
             },
-            "4": {
-              "name": "string.other.value.ftml"
+            "patterns": [
+                {
+                    "include": "source.css"
+                }
+            ]
+        },
+        "listpages-variable": {
+            "name": "variable.other.pagevars.$2.ftml",
+            "match": "(\\%\\%)((?:full)?name|category|title(?:_linked)?|link|content|rating(?:_votes)?|popularity|revisions|index|total|(?:crea|upda)ted_(?:at|by|by_linked)|tags(?:_linked)? |count|avatar|number|url|language(?:_native|_code)?)(\\%\\%)",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.variable.ftml"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            }
+        },
+        "countpages-variable": {
+            "name": "variable.other.countpages.$2.ftml",
+            "match": "(\\%\\%)(total|count)(\\%\\%)",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.variable.ftml"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            }
+        },
+        "listusers-variable": {
+            "name": "variable.other.listusers.$2.ftml",
+            "match": "(\\%\\%)(number|title|name|avatar)(\\%\\%)",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.variable.ftml"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            }
+        },
+        "interwiki-variable": {
+            "name": "variable.other.interwiki.$2.ftml",
+            "match": "(\\%\\%)(url|language(?:_native|_code)?)(\\%\\%)",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.variable.ftml"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            }
+        },
+        "include-variable": {
+            "name": "variable.other.include.$2.ftml",
+            "match": "(\\{\\$)([^\\}]+)(\\})",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.variable.ftml"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            }
+        },
+        "wikiscript-variable": {
+            "name": "variable.other.wikiscript.$2.ftml",
+            "match": "(\\{\\@)([^\\}]+)(\\})",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.variable.ftml"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            }
+        },
+        "link-triple": {
+            "name": "markup.underline.link.ftml",
+            "match": "(?:(\\[\\[\\[)\\s*(?:\\*)?)\\s*((?:(?!\\]\\]\\])[^\\*\n\\|\\s])+)\\s*(?:(\\|)\\s*((?:(?!\\]\\]\\]).)+)?)?\\s*(?<=[^\\]])(\\]\\]\\])",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.variable.ftml"
+                },
+                "3": {
+                    "name": "punctuation.separator.key-value.ftml"
+                },
+                "4": {
+                    "name": "string.other.value.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            }
+        },
+        "link-single": {
+            "name": "markup.underline.link.ftml",
+            "match": "((\\[)\\s*(?:\\*)?)\\s*((?:\\/(?!\\/)|\\#|(?:[^\\:\\/]+\\:)?\\/\\/)[^\\n\\s\\|]+)\\s+((?:(?!\\]).)+)?\\s*(?<=[^\\]])(\\])",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.variable.ftml"
+                },
+                "4": {
+                    "name": "string.other.value.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            }
+        },
+        "floating-reset": {
+            "name": "markup.floating.reset.ftml",
+            "match": "^(\\~\\~\\~(?:\\<|\\>)?)\\s*$",
+            "captures": {
+                "0": {
+                    "name": "punctuation.definition.tag.ftml"
+                }
+            }
+        },
+        "horizontal-rule": {
+            "name": "markup.hr.ftml",
+            "match": "^(\\-{3,})\\s*$",
+            "captures": {
+                "0": {
+                    "name": "punctuation.definition.tag.ftml"
+                }
+            }
+        },
+        "bold": {
+            "name": "markup.bold.ftml",
+            "begin": "\\*\\*",
+            "end": "\\*\\*",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                }
             },
-            "5": {
-              "name": "source.css-ignored-vscode"
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "italics": {
+            "name": "markup.italic.ftml",
+            "begin": "\\/\\/",
+            "end": "\\/\\/",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "subscript": {
+            "name": "markup.subscript.ftml",
+            "begin": "\\,\\,",
+            "end": "\\,\\,",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "superscript": {
+            "name": "markup.superscript.ftml",
+            "begin": "\\^\\^",
+            "end": "\\^\\^",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "mdash": {
+            "name": "markup.mdash.ftml",
+            "match": "(\\-\\-)\\s",
+            "captures": {
+                "0": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                }
             }
-          },
-          "name": "meta.attribute.$1.ftml"
-        }
-      ]
-    },
-    "comment": {
-      "name": "comment.block.ftml",
-      "begin": "\\[\\!\\-\\-",
-      "end": "\\-\\-\\]"
-    },
-    "yaml-frontmatter": {
-      "name": "markup.inserted.text.yaml",
-      "begin": "\\A^(\\-{3})$",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.yfm.begin.ftml"
-        }
-      },
-      "end": "^(\\-{3})$",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.yfm.end.ftml"
-        }
-      },
-      "contentName": "meta.embedded.block.yaml",
-      "patterns": [
-        {
-          "include": "source.yaml"
-        }
-      ]
-    },
-    "block-module-css": {
-      "name": "markup.inserted.text.css",
-      "begin": "(?i)(\\[\\[)\\s*(module|module654)\\s+(css)(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
         },
-        "2": {
-          "name": "entity.name.tag.ftml"
+        "strikethrough": {
+            "name": "markup.strikethrough.ftml",
+            "begin": "\\-\\-",
+            "end": "\\-\\-",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
         },
-        "3": {
-          "name": "string.other.value.ftml"
+        "underline": {
+            "name": "markup.underline.ftml",
+            "begin": "\\_\\_",
+            "end": "\\_\\_",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
         },
-        "4": {
-          "patterns": [
-            {
-              "include": "#attribute"
+        "teletype": {
+            "name": "markup.teletype.ftml",
+            "begin": "\\{\\{",
+            "end": "\\}\\}",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "html-char": {
+            "name": "markup.html.char.ftml",
+            "match": "(\\@\\<)((?:(?!\\>\\@).)*)(\\>\\@)",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "string.other.raw"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
             }
-          ]
         },
-        "5": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "end": "(?i)((\\[\\[)\\s*\\/)\\s*(module)\\s*(\\]\\])",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "source.css-ignored-vscode"
-        },
-        "3": {
-          "name": "entity.name.tag.ftml"
-        },
-        "4": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "contentName": "meta.embedded.block.css",
-      "patterns": [
-        {
-          "include": "source.css"
-        }
-      ]
-    },
-    "block-html": {
-      "name": "markup.inserted.text.html",
-      "begin": "(?i)(\\[\\[)\\s*(html)\\s*(\\]\\])",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "entity.name.tag.ftml"
-        },
-        "3": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "end": "(?i)((\\[\\[)\\s*\\/)\\s*(html)\\s*(\\]\\])",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "source.css-ignored-vscode"
-        },
-        "3": {
-          "name": "entity.name.tag.ftml"
-        },
-        "4": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "contentName": "meta.embedded.block.html",
-      "patterns": [
-        {
-          "include": "text.html.basic"
-        }
-      ]
-    },
-                                                          "inline-math": {
-                                                            "name": "markup.inserted.math.display.ftml",
-                                                            "begin": "(\\[\\[)\\s*(\\$)",
-                                                            "beginCaptures": {
-                                                              "0": {
-                                                                "name": "punctuation.definition.tag.begin.ftml"
-                                                              },
-                                                              "2": {
-                                                                "name": "entity.name.tag.ftml"
-                                                              }
-                                                            },
-                                                            "end": "(\\$)\\s*(\\]\\])",
-                                                            "endCaptures": {
-                                                              "0": {
-                                                                "name": "entity.name.tag.ftml"
-                                                              },
-                                                              "1": {
-                                                                "name": "punctuation.definition.tag.end.ftml"
-                                                              }
-                                                            },
-                                                            "contentName": "meta.embedded.inline.katex",
-                                                            "patterns": [
-                                                              {
-                                                                "include": "text.katex"
-                                                              }
-                                                            ]
-                                                          },
-    "block-include": {
-      "name": "meta.block.structure.standalone.ftml",
-      "begin": "(?i)(\\[\\[)\\s*(include)\\s*\\s+([^\\s\\]]+)(?=\\s|\\]\\])",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "entity.name.tag.ftml"
-        },
-        "3": {
-          "name": "string.other.value.ftml"
-        },
-        "4": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "end": "\\]\\]",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#attribute-messy-include"
-        }
-      ]
-    },
-    "block-code": {
-      "name": "meta.block.structure.standalone.ftml",
-      "begin": "(?i)(\\[\\[)\\s*(code)(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
-      "beginCaptures": {
-        "0": {
-          "name": "meta.block.structure.begin.ftml"
-        },
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "entity.name.tag.ftml"
-        },
-        "3": {
-          "patterns": [
-            {
-              "include": "#attribute"
+        "raw": {
+            "name": "markup.raw.ftml",
+            "begin": "\\@\\@",
+            "end": "\\@\\@",
+            "contentName": "string.other.raw",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
             }
-          ]
         },
-        "4": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "end": "((\\[\\[)\\/)\\s*(code)\\s*(\\]\\])",
-      "endCaptures": {
-        "0": {
-          "name": "meta.block.structure.end.ftml"
+        "color": {
+            "name": "markup.inserted.text",
+            "begin": "(\\#\\#)\\s*(\\#\\d+|[^\\n\\|]+)(\\|)",
+            "end": "\\#\\#",
+            "beginCaptures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.variable"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
         },
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "source.css-ignored-vscode"
-        },
-        "3": {
-          "name": "entity.name.tag.ftml"
-        },
-        "4": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "contentName": "markup.raw"
-    },
-    "block-module-begin": {
-      "match": "(?i)(\\[\\[)\\s*(module|module654)\\s+([^\\s\\]]+)(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
-      "captures": {
-        "0": {
-          "name": "meta.block.structure.begin.ftml"
-        },
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "entity.name.tag.ftml"
-        },
-        "3": {
-          "name": "string.other.value.ftml"
-        },
-        "4": {
-          "patterns": [
-            {
-              "include": "#attribute"
+        "header": {
+            "name": "markup.header.ftml",
+            "match": "^(\\+{1,6})\\s+(?=\\S)",
+            "captures": {
+                "0": {
+                    "name": "punctuation.definition.header.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.ftml"
+                }
             }
-          ]
         },
-        "5": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "name": "meta.block.structure.module.$3.ftml"
-    },
-    "block-module-end": {
-      "name": "meta.block.structure.module.end.ftml",
-      "match": "(?i)((\\[\\[)\\/)\\s*(module|module654)\\s*(\\]\\])",
-      "captures": {
-        "0": {
-          "name": "meta.block.structure.end.ftml"
-        },
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "source.css-ignored-vscode"
-        },
-        "3": {
-          "name": "entity.name.tag.ftml"
-        },
-        "4": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      }
-    },
-    "block-standalone": {
-      "match": "(?i)(\\[\\[)\\s*()\\s*(\\]\\])",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "entity.name.tag.ftml"
-        },
-        "3": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "name": "meta.block.structure.$2.standalone.ftml"
-    },
-    "block-standalone-value": {
-      "match": "(?i)(\\[\\[)\\s*(equation|eref|eqref|lines|newlines|target|anchortarget|user|\\*user)\\s+((?:(?!\\]\\]).)+)\\s*(\\]\\])",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "entity.name.tag.ftml"
-        },
-        "3": {
-          "name": "string.other.value.ftml"
-        },
-        "4": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "name": "meta.block.structure.$2.standalone.ftml"
-    },
-    "block-standalone-value-map": {
-      "match": "(?i)(\\[\\[)\\s*(date|iframe|image|=image|<image|>image|f<image|f>image|)\\s+([^\\s\\]]+)(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "entity.name.tag.ftml"
-        },
-        "3": {
-          "name": "string.other.value.ftml"
-        },
-        "4": {
-          "patterns": [
-            {
-              "include": "#attribute"
+        "quote": {
+            "name": "markup.quote.ftml",
+            "match": "^(\\>+)\\s+(?=\\S)",
+            "captures": {
+                "0": {
+                    "name": "punctuation.definition.quote.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.ftml"
+                }
             }
-          ]
         },
-        "5": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "name": "meta.block.structure.$2.standalone.ftml"
-    },
-    "block-standalone-map": {
-      "match": "(?i)(\\[\\[)\\s*(footnoteblock|toc|f<toc|f>toc)(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "entity.name.tag.ftml"
-        },
-        "3": {
-          "patterns": [
-            {
-              "include": "#attribute"
+        "nextline": {
+            "name": "markup.nextline.ftml",
+            "match": "(\\_)$",
+            "captures": {
+                "0": {
+                    "name": "punctuation.definition.nextline.ftml"
+                },
+                "1": {
+                    "name": "entity.name.tag.ftml"
+                }
             }
-          ]
         },
-        "4": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "name": "meta.block.structure.$2.standalone.ftml"
-    },
-    "block": {
-      "begin": "(?i)(\\[\\[)\\s*(footnote|tabview|tabs)\\s*(\\]\\])",
-      "beginCaptures": {
-        "0": {
-          "name": "meta.block.structure.begin.ftml"
-        },
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "entity.name.tag.ftml"
-        },
-        "3": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "end": "(?i)((\\[\\[)\\/)\\s*(footnote|tabview|tabs)\\s*(\\]\\])",
-      "endCaptures": {
-        "0": {
-          "name": "meta.block.structure.end.ftml"
-        },
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "source.css-ignored-vscode"
-        },
-        "3": {
-          "name": "entity.name.tag.ftml"
-        },
-        "4": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "name": "meta.block.structure.$2.ftml",
-      "patterns": [
-        {
-          "include": "$self"
-        }
-      ]
-    },
-    "block-value": {
-      "begin": "(?i)(\\[\\[)\\s*(ifcategory|iftags|size|tab)\\s+((?:(?!\\]\\]).)+)\\s*(\\]\\])",
-      "beginCaptures": {
-        "0": {
-          "name": "meta.block.structure.begin.ftml"
-        },
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "entity.name.tag.ftml"
-        },
-        "3": {
-          "name": "string.other.value.ftml"
-        },
-        "4": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "end": "(?i)((\\[\\[)\\/)\\s*(ifcategory|iftags|size|tab)\\s*(\\]\\])",
-      "endCaptures": {
-        "0": {
-          "name": "meta.block.structure.end.ftml"
-        },
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "source.css-ignored-vscode"
-        },
-        "3": {
-          "name": "entity.name.tag.ftml"
-        },
-        "4": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "name": "meta.block.structure.$2.ftml",
-      "patterns": [
-        {
-          "include": "$self"
-        }
-      ]
-    },
-    "block-value-map": {
-      "begin": "(?i)(\\[\\[)\\s*()\\s+([^\\s\\]]+)(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
-      "beginCaptures": {
-        "0": {
-          "name": "meta.block.structure.begin.ftml"
-        },
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "entity.name.tag.ftml"
-        },
-        "3": {
-          "name": "string.other.value.ftml"
-        },
-        "4": {
-          "patterns": [
-            {
-              "include": "#attribute"
+        "nobreak": {
+            "name": "markup.nobreak.ftml",
+            "match": "(\\\\)$",
+            "captures": {
+                "0": {
+                    "name": "punctuation.definition.nobreak.ftml"
+                },
+                "1": {
+                    "name": "entity.name.tag.ftml"
+                }
             }
-          ]
         },
-        "5": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "end": "(?i)((\\[\\[)\\/)\\s*()\\s*(\\]\\])",
-      "endCaptures": {
-        "0": {
-          "name": "meta.block.structure.end.ftml"
-        },
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "source.css-ignored-vscode"
-        },
-        "3": {
-          "name": "entity.name.tag.ftml"
-        },
-        "4": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "name": "meta.block.structure.$2.ftml",
-      "patterns": [
-        {
-          "include": "$self"
-        }
-      ]
-    },
-    "block-map": {
-      "begin": "(?i)(\\[\\[)\\s*(anchor_|a_|anchor|a|\\*anchor_|\\*a_|\\*anchor|\\*a|blockquote|quote|bold|b|strong|collapsible|del|deletion|div_|div|hidden|ins|insertion|invisible|italics|i|em|emphasis|mark|highlight|monospace|tt|mono|paragraph|p|ruby|span_|span|strikethrough|s|subscript|sub|superscript|sup|super|table|cell|hcell|row|underline|u)(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
-      "beginCaptures": {
-        "0": {
-          "name": "meta.block.structure.begin.ftml"
-        },
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "entity.name.tag.ftml"
-        },
-        "3": {
-          "patterns": [
-            {
-              "include": "#attribute"
+        "block-module-standalone": {
+            "name": "meta.block.structure.module.$4.standalone.ftml",
+            "match": "(?i)(\\[\\[)\\s*(module(?:654)?)(:[^\\n\\s]+)?\\s+(Rate|Redirect|SiteChanges|TagCloud|PagesByTag|ForumStart|ForumCategory|ForumThread|ForumNewThread|ForumNewPost|RecentPosts|Rat)(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "4": {
+                    "name": "string.other.value.ftml"
+                },
+                "5": {
+                    "patterns": [
+                        {
+                            "include": "#attribute"
+                        }
+                    ]
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
             }
-          ]
         },
-        "4": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "end": "(?i)((\\[\\[)\\/)\\s*(anchor_|a_|anchor|a|\\*anchor_|\\*a_|\\*anchor|\\*a|blockquote|quote|bold|b|strong|collapsible|del|deletion|div_|div|hidden|ins|insertion|invisible|italics|i|em|emphasis|mark|highlight|monospace|tt|mono|paragraph|p|ruby|span_|span|strikethrough|s|subscript|sub|superscript|sup|super|table|cell|hcell|row|underline|u)\\s*(\\]\\])",
-      "endCaptures": {
-        "0": {
-          "name": "meta.block.structure.end.ftml"
+        "block-module-ListPages": {
+            "name": "meta.block.structure.module.$4.ftml",
+            "begin": "(?i)(\\[\\[)\\s*(module(?:654)?)(:[^\\n\\s]+)?\\s+(ListPages)(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(\\2)(\\3)\\s*(\\]\\])",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "4": {
+                    "name": "string.other.value.ftml"
+                },
+                "5": {
+                    "patterns": [
+                        {
+                            "include": "#attribute"
+                        }
+                    ]
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                },
+                {
+                    "include": "#listpages-variable"
+                }
+            ]
         },
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
+        "block-module-CountPages": {
+            "name": "meta.block.structure.module.$4.ftml",
+            "begin": "(?i)(\\[\\[)\\s*(module(?:654)?)(:[^\\n\\s]+)?\\s+(CountPages)(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(\\2)(\\3)\\s*(\\]\\])",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "4": {
+                    "name": "string.other.value.ftml"
+                },
+                "5": {
+                    "patterns": [
+                        {
+                            "include": "#attribute"
+                        }
+                    ]
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                },
+                {
+                    "include": "#countpages-variable"
+                }
+            ]
         },
-        "2": {
-          "name": "source.css-ignored-vscode"
+        "block-module-ListUsers": {
+            "name": "meta.block.structure.module.$4.ftml",
+            "begin": "(?i)(\\[\\[)\\s*(module(?:654)?)(:[^\\n\\s]+)?\\s+(ListUsers)(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(\\2)(\\3)\\s*(\\]\\])",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "4": {
+                    "name": "string.other.value.ftml"
+                },
+                "5": {
+                    "patterns": [
+                        {
+                            "include": "#attribute"
+                        }
+                    ]
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                },
+                {
+                    "include": "#listusers-variable"
+                }
+            ]
         },
-        "3": {
-          "name": "entity.name.tag.ftml"
+        "block-module-InterWiki": {
+            "name": "meta.block.structure.module.$4.ftml",
+            "begin": "(?i)(\\[\\[)\\s*(module(?:654)?)(:[^\\n\\s]+)?\\s+(InterWiki)(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(\\2)(\\3)\\s*(\\]\\])",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "4": {
+                    "name": "string.other.value.ftml"
+                },
+                "5": {
+                    "patterns": [
+                        {
+                            "include": "#attribute"
+                        }
+                    ]
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                },
+                {
+                    "include": "#interwiki-variable"
+                }
+            ]
         },
-        "4": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "name": "meta.block.structure.$2.ftml",
-      "patterns": [
-        {
-          "include": "$self"
-        }
-      ]
-    },
-    "block-align": {
-      "name": "meta.block.structure.align.ftml",
-      "begin": "(\\[\\[)\\s*(\\<|\\>|\\=|\\=\\=)\\s*(\\]\\])",
-      "beginCaptures": {
-        "0": {
-          "name": "meta.block.structure.begin.ftml"
-        },
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "entity.name.tag.ftml"
-        },
-        "3": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "end": "((\\[\\[)\\s*\\/)\\s*(\\<|\\>|\\=|\\=\\=)\\s*(\\]\\])",
-      "endCaptures": {
-        "0": {
-          "name": "meta.block.structure.end.ftml"
-        },
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "source.css-ignored-vscode"
-        },
-        "3": {
-          "name": "entity.name.tag.ftml"
-        },
-        "4": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "patterns": [
-        {
-          "include": "$self"
-        }
-      ]
-    },
-                                                                          "blockquote": {
-                                                                            "name": "markup.quote.ftml",
-                                                                            "match": "^(\\>+)(?=\\s)",
-                                                                            "captures": {
-                                                                              "1": {
-                                                                                "name": "punctuation.definition.quote.ftml"
-                                                                              }
-                                                                            }
-                                                                          },
-                                                                          "inline-align": {
-                                                                            "name": "markup.align.ftml",
-                                                                            "match": "(\\=)\\s",
-                                                                            "captures": {
-                                                                              "1": {
-                                                                                "name": "punctuation.definition.align.ftml"
-                                                                              }
-                                                                            }
-                                                                          },
-                                                                          "header": {
-                                                                            "name": "markup.header.ftml",
-                                                                            "match": "^(\\+{1,6}\\*?)(?=\\s)",
-                                                                            "captures": {
-                                                                              "1": {
-                                                                                "name": "punctuation.definition.header.ftml"
-                                                                              }
-                                                                            }
-                                                                          },
-                                                                          "list": {
-                                                                            "name": "markup.list.ftml",
-                                                                            "match": "^\\s*(\\*|\\#)(?=\\s)",
-                                                                            "captures": {
-                                                                              "1": {
-                                                                                "name": "punctuation.definition.list.ftml"
-                                                                              }
-                                                                            }
-                                                                          },
-    "italics": {
-      "name": "markup.italic.ftml",
-      "begin": "\\/\\/",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        }
-      },
-      "end": "\\/\\/",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "patterns": [
-        {
-          "include": "$self"
-        }
-      ]
-    },
-    "bold": {
-      "name": "markup.bold.ftml",
-      "begin": "\\*\\*",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        }
-      },
-      "end": "\\*\\*",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "patterns": [
-        {
-          "include": "$self"
-        }
-      ]
-    },
-    "subscript": {
-      "name": "markup.subscript.ftml",
-      "begin": "\\,\\,",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        }
-      },
-      "end": "\\,\\,",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "patterns": [
-        {
-          "include": "$self"
-        }
-      ]
-    },
-    "superscript": {
-      "name": "markup.subscript.ftml",
-      "begin": "\\^\\^",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        }
-      },
-      "end": "\\^\\^",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "patterns": [
-        {
-          "include": "$self"
-        }
-      ]
-    },
-    "teletype": {
-      "name": "markup.teletype.ftml",
-      "begin": "\\{\\{",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        }
-      },
-      "end": "\\}\\}",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      },
-      "patterns": [
-        {
-          "include": "$self"
-        }
-      ]
-    },
-    "raw": {
-      "name": "markup.raw.ftml",
-      "match": "(\\@\\@)\\s*((?:(?!\\@\\@).)+)\\s*(?<=[^\\@])(\\@\\@)",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "string.other.raw.ftml"
-        },
-        "3": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      }
-    },
-    "escape": {
-      "name": "markup.raw.ftml",
-      "match": "(\\@\\<)\\s*((?:(?!\\>\\@).)+)\\s*(\\>\\@)",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "string.other.escape.ftml"
-        },
-        "3": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      }
-    },
-    "link-triple": {
-      "name": "markup.underline.link.ftml",
-      "match": "((\\[\\[\\[)\\s*(?:\\*)?)\\s*((?:(?!\\]\\]\\])[^\\*\\n\\|])+)\\s*(?:(\\|)\\s*((?:(?!\\]\\]\\]).)+)?)?\\s*(?<=[^\\]])(\\]\\]\\])",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "source.css-ignored-vscode"
-        },
-        "3": {
-          "name": "entity.name.variable.ftml"
-        },
-        "4": {
-          "name": "punctuation.separator.key-value.ftml"
-        },
-        "5": {
-          "name": "string.other.value.ftml"
-        },
-        "6": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      }
-    },
-    "link-single": {
-      "name": "markup.underline.link.ftml",
-      "match": "((\\[)\\s*(?:\\*)?)\\s*((?:\\/(?!\\/)|\\#|(?:[^\\:\\/]+\\:)?\\/\\/)[^\\n\\s\\|]+)\\s+((?:(?!\\]).)+)?\\s*(?<=[^\\]])(\\])",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.ftml"
-        },
-        "2": {
-          "name": "source.css-ignored-vscode"
-        },
-        "3": {
-          "name": "entity.name.variable.ftml"
-        },
-        "4": {
-          "name": "string.other.value.ftml"
-        },
-        "5": {
-          "name": "punctuation.definition.tag.end.ftml"
-        }
-      }
-    },
-    "horizontal-rule": {
-      "name": "markup.hr.ftml",
-      "match": "^(\\-{4,})\\s*$",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.tag.ftml"
-        }
-      }
-    },
-    "table": {
-      "name": "markup.table.ftml",
-      "begin": "^(\\|\\|)+\\~?",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.ftml"
-        }
-      },
-      "end": "(\\|\\|)\\s*$",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.ftml"
-        }
-      },
-      "patterns": [
-        {
-          "match": "(\\|\\|)+\\~?",
-          "captures": {
-            "1": {
-              "name": "punctuation.definition.tag.ftml"
+        "block-standalone-value": {
+            "name": "meta.block.structure.$2.standalone.ftml",
+            "match": "(?i)(\\[\\[)\\s*(char|character|equation|eref|eqref|lines|newlines|target|anchortarget|rb|#if|#ifexpr|#)\\s+((?:(?!\\]\\]).)+)\\s*(\\]\\])",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "string.other.value.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
             }
-          }
         },
-        {
-          "match": "\\s(\\_)$",
-          "captures": {
-            "1": {
-              "name": "punctuation.definition.tag.ftml"
+        "block-user": {
+            "name": "meta.block.structure.$2.standalone.ftml",
+            "match": "(?i)(\\[\\[\\*?)\\s*(user)\\s+((?:(?!\\]\\]).)+)\\s*(\\]\\])",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "string.other.value.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
             }
-          }
         },
-        {
-          "include": "$self"
+        "block-standalone-value-map": {
+            "name": "meta.block.structure.$2.standalone.ftml",
+            "match": "(?i)(\\[\\[)\\s*(date|iframe|image|=image|<image|>image|f<image|f>image)\\s+([^\\s\\]]+)(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "string.other.value.ftml"
+                },
+                "4": {
+                    "patterns": [
+                        {
+                            "include": "#attribute"
+                        }
+                    ]
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            }
+        },
+        "block-standalone-map": {
+            "name": "meta.block.structure.$2.standalone.ftml",
+            "match": "(?i)(\\[\\[)\\s*(footnoteblock|toc|f<toc|f>toc|else|input)(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "patterns": [
+                        {
+                            "include": "#attribute"
+                        }
+                    ]
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            }
+        },
+        "block-simple": {
+            "name": "meta.block.structure.$2.ftml",
+            "begin": "(?i)(\\[\\[)\\s*(footnote|tabview|tabs)()(:[^\\n\\s]+)?\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(\\2)()?(\\4)\\s*(\\]\\])",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "block-value": {
+            "name": "meta.block.structure.$2.ftml",
+            "begin": "(?i)(\\[\\[)\\s*(ifcategory|iftags|if|ifexpr|size|tab)()(:[^\\n\\s]+)?\\s+((?:(?!\\]\\]).)+)\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(\\2)()?(\\4)\\s*(\\]\\])",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "name": "string.other.value.ftml"
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "block-map": {
+            "name": "meta.block.structure.$2.ftml",
+            "begin": "(?i)(\\[\\[)\\s*(blockquote|quote|bold|b|strong|collapsible|del|deletion|ins|insertion|italics|i|em|emphasis|mark|highlight|monospace|tt|mono|paragraph|p|ruby|rt|rubytext|strikethrough|s|subscript|sub|superscript|sup|super|table|cell|hcell|row|underline|u|form|code)()(:[^\\n\\s]+)?(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(\\2)()?(\\4)\\s*(\\]\\])",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "patterns": [
+                        {
+                            "include": "#attribute"
+                        }
+                    ]
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "block-anchor": {
+            "name": "meta.block.structure.$2.ftml",
+            "begin": "(?i)(\\[\\[\\*?)\\s*(anchor)(\\s*_?)(:[^\\n\\s]+)?(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(\\2)(\\s*_?)?(\\4)\\s*(\\]\\])",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "patterns": [
+                        {
+                            "include": "#attribute"
+                        }
+                    ]
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "block-a": {
+            "name": "meta.block.structure.$2.ftml",
+            "begin": "(?i)(\\[\\[\\*?)\\s*(a)(\\s*_?)(:[^\\n\\s]+)?(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(\\2)(\\s*_?)?(\\4)\\s*(\\]\\])",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "patterns": [
+                        {
+                            "include": "#attribute"
+                        }
+                    ]
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "block-div": {
+            "name": "meta.block.structure.$2.ftml",
+            "begin": "(?i)(\\[\\[)\\s*(div)(\\s*_?)(:[^\\n\\s]+)?(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(\\2)(\\s*_?)?(\\4)\\s*(\\]\\])",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "patterns": [
+                        {
+                            "include": "#attribute"
+                        }
+                    ]
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "block-span": {
+            "name": "meta.block.structure.$2.ftml",
+            "begin": "(?i)(\\[\\[)\\s*(span)(\\s*_?)(:[^\\n\\s]+)?(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(\\2)(\\s*_?)?(\\4)\\s*(\\]\\])",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "patterns": [
+                        {
+                            "include": "#attribute"
+                        }
+                    ]
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "block-ol": {
+            "name": "meta.block.structure.$2.ftml",
+            "begin": "(?i)(\\[\\[)\\s*(ol)(\\s*_?)(:[^\\n\\s]+)?(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(\\2)(\\s*_?)?(\\4)\\s*(\\]\\])",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "patterns": [
+                        {
+                            "include": "#attribute"
+                        }
+                    ]
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "block-ul": {
+            "name": "meta.block.structure.$2.ftml",
+            "begin": "(?i)(\\[\\[)\\s*(ul)(\\s*_?)(:[^\\n\\s]+)?(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(\\2)(\\s*_?)?(\\4)\\s*(\\]\\])",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "patterns": [
+                        {
+                            "include": "#attribute"
+                        }
+                    ]
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "block-li": {
+            "name": "meta.block.structure.$2.ftml",
+            "begin": "(?i)(\\[\\[)\\s*(li)(\\s*_?)(:[^\\n\\s]+)?(?:\\s+((?:(?!\\]\\]).)+))?\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(\\2)(\\s*_?)?(\\4)\\s*(\\]\\])",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "patterns": [
+                        {
+                            "include": "#attribute"
+                        }
+                    ]
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "block-align-left": {
+            "name": "meta.block.structure.$2.ftml",
+            "begin": "(?i)(\\[\\[)\\s*(<)()(:[^\\n\\s]+)?\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(\\2)()?(\\4)\\s*(\\]\\])",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "block-align-right": {
+            "name": "meta.block.structure.$2.ftml",
+            "begin": "(?i)(\\[\\[)\\s*(>)()(:[^\\n\\s]+)?\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(\\2)()?(\\4)\\s*(\\]\\])",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "block-align-center": {
+            "name": "meta.block.structure.$2.ftml",
+            "begin": "(?i)(\\[\\[)\\s*(=)()(:[^\\n\\s]+)?\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(\\2)()?(\\4)\\s*(\\]\\])",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "block-align-stretch": {
+            "name": "meta.block.structure.$2.ftml",
+            "begin": "(?i)(\\[\\[)\\s*(==)()(:[^\\n\\s]+)?\\s*(\\]\\])",
+            "end": "(?i)((\\[\\[)\\/)\\s*(\\2)()?(\\4)\\s*(\\]\\])",
+            "beginCaptures": {
+                "0": {
+                    "name": "meta.block.structure.begin.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "meta.block.structure.end.ftml"
+                },
+                "1": {
+                    "name": "punctuation.definition.tag.begin.ftml"
+                },
+                "2": {
+                    "name": "source.css-ignored-vscode"
+                },
+                "3": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "4": {
+                    "name": "entity.name.tag.ftml"
+                },
+                "5": {
+                    "name": "punctuation.definition.tag.ftml"
+                },
+                "6": {
+                    "name": "punctuation.definition.tag.end.ftml"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
         }
-      ]
-    }  
-  }
+    }
 }

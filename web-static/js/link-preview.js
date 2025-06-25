@@ -1,50 +1,50 @@
-let tip;
-let previewPending = false;
+let tip
+let previewPending = false
 
 async function showPreviewPopup(event) {
-    if (tip) return;
-    const element = event.target;
+    if (tip) return
+    const element = event.target
 
-    previewPending = true;
+    previewPending = true
 
     const response = await fetch(element.href, {
         method: 'GET'
-    });
+    })
 
-    if (!previewPending) return;
+    if (!previewPending) return
 
-    tip = document.createElement('div');
+    tip = document.createElement('div')
     tip.innerHTML = (await response.text())
-    tip.style = "position: absolute;";
-    element.appendChild(tip);
+    tip.style = "position: absolute;"
+    element.appendChild(tip)
 }
 
 async function hidePreviewPopup(event) {
-    previewPending = false;
-    if (tip) tip.remove();
-    tip = null;
+    previewPending = false
+    if (tip) tip.remove()
+    tip = null
     
 }
 
 function attachObserver() {
-    const targetNode = document.body;
-    console.log(targetNode);
+    const targetNode = document.body
+    console.log(targetNode)
 
     if (!targetNode) {
-        setTimeout(attachObserver, 500);
-        return;
+        setTimeout(attachObserver, 500)
+        return
     }
 
-    const links = document.getElementsByTagName("a");
+    const links = document.getElementsByTagName("a")
 
     for (var i = 0; i < links.length; i++) {
-        const link = links[i];
+        const link = links[i]
         if (link.hasAttribute("href")) {
-            console.log(link);
-            link.addEventListener("mouseover", showPreviewPopup, false);
-            link.addEventListener("mouseleave", hidePreviewPopup, false);
+            console.log(link)
+            link.addEventListener("mouseover", showPreviewPopup, false)
+            link.addEventListener("mouseleave", hidePreviewPopup, false)
         }
     }
 }
 
-setTimeout(attachObserver, 100);
+setTimeout(attachObserver, 100)

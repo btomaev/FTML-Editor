@@ -2,9 +2,9 @@
   "name": "ftml-editor",
   "publisher": "JustOneMorePieceOfCode",
   "displayName": "FTML Editor",
-  "description": "RuFoundation FTML branch editor with live preview",
+  "description": "RuFoundation article editor with live preview",
   "repository": "https://github.com/btomaev/ftml-editor",
-  "version": "0.0.28",
+  "version": "0.0.31",
   "keywords": [
     "ftml",
     "scp",
@@ -22,6 +22,16 @@
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "FTML Editor",
+      "properties": {
+        "ftml-editor.wikibase": {
+          "type": "string",
+          "default": "https://scpfoundation.net/",
+          "description": "Base wiki address for api (e.g. https://scpfoundation.net/)"
+        }
+      }
+    },
     "commands": [
       {
         "command": "ftml-editor.preview.start",
@@ -49,6 +59,11 @@
         "title": "%ftml-editor.account.logout%"
       },
       {
+        "command": "ftml-editor.account.switch",
+        "category": "FTML",
+        "title": "%ftml-editor.account.switch%"
+      },
+      {
         "command": "ftml-editor.article.publish",
         "category": "FTML",
         "title": "%ftml-editor.article.publish%"
@@ -63,7 +78,7 @@
       "commandPalette": [
         {
           "when": "resourceLangId == ftml",
-            "command": "ftml-editor.article.publish"
+          "command": "ftml-editor.article.publish"
         }
       ],
       "editor/context": [
@@ -135,14 +150,6 @@
       },
       {
         "language": "ftml",
-        "path": "./snippets/components.json"
-      },
-      {
-        "language": "ftml",
-        "path": "./snippets/themes.json"
-      },
-      {
-        "language": "ftml",
         "path": "./snippets/templates.json"
       }
     ],
@@ -154,7 +161,9 @@
           "ftml"
         ],
         "extensions": [
-          ".ftml"
+          ".ftml",
+          ".scpru",
+          ".ruscp"
         ],
         "configuration": "./language-configuration.json",
         "icon": {
@@ -170,9 +179,7 @@
         "path": "./syntaxes/ftml.tmLanguage.json",
         "embeddedLanguages": {
           "meta.embedded.block.css": "css",
-          "meta.embedded.block.html": "html",
-          "meta.embedded.block.katex": "katex",
-          "meta.embedded.block.yaml": "yaml"
+          "meta.embedded.block.html": "html"
         }
       }
     ]
@@ -194,6 +201,7 @@
     "@typescript-eslint/parser": "^6.15.0",
     "@vscode/test-cli": "^0.0.4",
     "@vscode/test-electron": "^2.3.8",
+    "esbuild": "^0.23.0",
     "eslint": "^8.56.0",
     "js-yaml": "^4.1.0",
     "typescript": "^5.3.3"

@@ -4,6 +4,7 @@
 @import url('../fonts/nanumgothiccoding.css');
 @import url('../fonts/font-awesome.min.css');
 @import url('../fonts/css2.css');
+@import url('../css/side-bar-redesign.css');
 
 @charset "utf-8";
 
@@ -91,6 +92,10 @@ div.class1 > div {
     background: linear-gradient(to right, #eee, #eeecec);
     box-shadow: inset 2px 3px 6px rgba(0,0,0,.15);
     border-radius: 5px 5px 0 0;
+}
+
+.thread-container .post .long .head .title {
+    word-break: break-all;
 }
  
 /* Hide Forum Signatures */
@@ -486,6 +491,7 @@ body {
     font-family: Inter, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     font-size: .8em;
     color: #333;
+    font-feature-settings: 'case', 'ss01', 'ss04';
 }
  
 div#container-wrap {
@@ -504,7 +510,7 @@ sup {
     position: relative;
     z-index: 10;
     padding-bottom: 22px; /* FOR MENU */
-    background: url('../images/scp-logo.png') 10px 40px no-repeat;
+    background: url('../header-logo.svg') 10px 40px no-repeat;
 }
  
 #search-top-box {
@@ -813,7 +819,7 @@ sup {
  
 /* CONTENT */
 #main-content {
-    /* margin: 0 2em 0 22em; */
+    margin: 0 2em 0 22em;
     padding: 1em;
     position: relative;
 }
@@ -839,19 +845,19 @@ sup {
 .yui-navset .yui-nav a,
 .yui-navset .yui-navset-top .yui-nav a {
     background-color: #d8d8d8;
-    background-image: url('https://d3g0gp89917ko0.cloudfront.net/v--3b8418686296/common--theme/shiny/images/yuitabs.png');
+    background-image: url('../images/yuitabs.png');
 }
  
 .yui-navset .yui-nav .selected a,
 .yui-navset .yui-nav .selected a:focus, /* no focus effect for selected */
 .yui-navset .yui-nav .selected a:hover { /* no hover effect for selected */
-    background: #700 url('https://d3g0gp89917ko0.cloudfront.net/v--3b8418686296/common--theme/shiny/images/yuitabs.png') repeat-x left -1400px; /* selected tab background */
+    background: #700 url('../images/yuitabs.png') repeat-x left -1400px; /* selected tab background */
     color: #fff;
 }
  
 .yui-navset .yui-nav a:hover,
 .yui-navset .yui-nav a:focus {
-    background: #d88 url('https://d3g0gp89917ko0.cloudfront.net/v--3b8418686296/common--theme/shiny/images/yuitabs.png') repeat-x left -1300px;
+    background: #d88 url('../images/yuitabs.png') repeat-x left -1300px;
     text-decoration: none;
 }
  
@@ -965,7 +971,7 @@ div.sexy-box div.image-container img {
  
 .content-panel .panel-body {
     padding: 5px 10px;
-    background: #fff9f0 url('../images/scp-bg-reverse.png') bottom repeat-x;
+    background: #fff9f0 url('../scp-bg-reverse.png') bottom repeat-x;
 }
  
 .content-panel .panel-footer {
@@ -1098,7 +1104,7 @@ div.sexy-box div.image-container img {
  
 .scp-image-block img {
     border: 0;
-    width: 300px;
+    width: 100%;
 }
  
 .scp-image-block .scp-image-caption {
@@ -1108,7 +1114,7 @@ div.sexy-box div.image-container img {
     font-size: 80%;
     font-weight: bold;
     text-align: center;
-    width: 300px;
+    width: 100%;
 }
  
 .scp-image-block > p {
@@ -1123,7 +1129,7 @@ div.sexy-box div.image-container img {
 /* Wikiwalk Navigation */
 .footer-wikiwalk-nav {
     font-weight: bold;
-    font-size: 75%;
+    font-size: 90%;
 }
  
 /* Licensebox */
@@ -1160,6 +1166,11 @@ div.sexy-box div.image-container img {
     background-image: linear-gradient(to right, #eee, #eeecec);
     box-shadow: inset 2px 3px 6px rgba(0, 0, 0, .15);
     border-radius: 5px 5px 0 0;
+}
+
+.post-container .post-container {
+    border-left: 2px solid rgba(0,0,0,.25);
+    padding-left: .75rem;
 }
  
 /* Hide Forum Signatures */
@@ -1568,7 +1579,7 @@ td {
     }
  
     #edit-page-title {
-        max-width: 90%;
+        width: 90%;
     }
  
     .content-panel.left-column, .content-panel.right-column {
@@ -1787,7 +1798,7 @@ td {
 /* Tablet Media Query */
 @media (min-width: 768px) and (max-width: 979px) {
     #main-content {
-        /* margin: 0 4em 0 20em; */
+        margin: 0 4em 0 20em;
     }
  
     #header, #top-bar #side-bar {
@@ -1922,7 +1933,7 @@ ul li ul li a {
     }
  
     #main-content {
-        /* max-width: 90%; */
+        max-width: 90%;
         margin: 0 5%;
         padding: 0;
         -webkit-transition: .5s ease-in-out .1s;
@@ -1966,7 +1977,6 @@ ul li ul li a {
         left: 0;
         width: 17em;
         margin: 0;
-        border: 1px solid #dedede;
         z-index: 10;
     }
  

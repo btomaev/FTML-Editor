@@ -2,8 +2,9 @@
     "ftml-editor.preview.start": "Предпросмотр",
     "ftml-editor.preview.start-live": "Живой предпросмотр",
     "ftml-editor.preview.refresh": "Обновить предпросмотр",
-    "ftml-editor.account.login": "Войти в учетную запись scpfoundation.net",
-    "ftml-editor.account.logout": "Выйти из учетной записи scpfoundation.net",
-    "ftml-editor.article.publish": "Опубликовать статью на scpfoundation.net",
-    "ftml-editor.article.fetch": "Загрузить статью с scpfoundation.net"
+    "ftml-editor.account.login": "Войти в учетную запись",
+    "ftml-editor.account.logout": "Выйти из учетной записи",
+    "ftml-editor.account.switch": "Переключить учетную запись",
+    "ftml-editor.article.publish": "Опубликовать страницу",
+    "ftml-editor.article.fetch": "Загрузить страницу"
 }

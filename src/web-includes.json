@@ -1,13 +1,12 @@
 {
     "styles": [
-        "/css/all.css",
+        "/fontawesome/css/all.css",
         "/css/wikidot-base.css",
         "/css/scp-base.css",
         "/css/app.css"
     ],
     "scripts": [
         "/js/styles-reset.js",
-        "/js/app.js",
-        "/js/interwiki.js"
+        "/js/app.js"
     ]
 }

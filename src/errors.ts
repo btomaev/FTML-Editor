@@ -5,6 +5,13 @@ export class PageDoesNotExistError extends Error {
     }
 }
 
+export class PageAlreadyExistError extends Error {
+    constructor(message?: string) {
+        super(message ? message : 'Страница уже существует');
+        this.name = "PageAlreadyExistError";
+    }
+}
+
 export class PageLoadingError extends Error {
     constructor(message?: string) {
         super(message ? message : 'Ошибка загрузки страницы');
@@ -51,6 +58,13 @@ export class AuthorizationError extends Error {
     constructor(message?: string) {
         super(message ? message : 'Ошибка авторизации');
         this.name = "AuthorizationError";
+    }
+}
+
+export class UnauthorizedError extends Error {
+    constructor(message?: string) {
+        super(message ? message : 'Это действие требует авторизации');
+        this.name = "UnauthorizedError";
     }
 }
 
