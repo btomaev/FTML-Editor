@@ -53,7 +53,7 @@ export class WikiAuthProvider implements AuthenticationProvider, Disposable {
         return this._sessionChangeEmitter.event
     }
 
-    public async getSessions(scopes?: string[]): Promise<readonly AuthenticationSession[]> {
+    public async getSessions(scopes?: readonly string[] | undefined, options?: vscode.AuthenticationProviderSessionOptions): Promise<vscode.AuthenticationSession[]> {
         await this.restoreSessions()
         if (!scopes?.length) {
             return [...this._sessions.values()]

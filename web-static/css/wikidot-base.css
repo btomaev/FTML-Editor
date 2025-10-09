@@ -1516,7 +1516,6 @@ version: 2.3.1
 .yui-navset .yui-navset-bottom .yui-nav li {
     display:inline-block;
     display:-moz-inline-stack;
-    display:inline; /* IE */
     vertical-align:bottom; /* safari: for overlap */
     cursor:pointer; /* gecko: due to -moz-inline-stack on anchor */
     zoom:1; /* IE: kill space between horizontal tabs */
@@ -2083,7 +2082,6 @@ version: 2.3.1
 
 .thread-container .post{
 	padding: 10px 0 10px 0;
-	width: 99%; /* I love you IE */
 }
 
 .thread-container .post .options a{
@@ -2106,6 +2104,9 @@ version: 2.3.1
 }
 
 .thread-container .post  .long  .head .info{
+	display: flex;
+	align-items: baseline;
+	gap: 0.5ch;
 }
 
 .thread-container .post  .long  .content{
@@ -2178,10 +2179,6 @@ version: 2.3.1
 .thread-container .post.folded   .short{ display: block;}
 
 /* structured layout */
-
-.post-container .post-container{
-	margin-left: 5%;
-}
 
 .post-container.fordelete{
 	border: 2px solid #E44;
@@ -2993,7 +2990,6 @@ and have an super awesome onclick state
     display: -moz-inline-stack;
     display: inline-block;
     vertical-align: middle !important;
-    display: inline !important;
     position: relative;
 
     /*disable text selection (Firefox only)*/

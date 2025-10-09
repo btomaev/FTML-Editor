@@ -4,7 +4,7 @@
   "displayName": "FTML Editor",
   "description": "RuFoundation article editor with live preview",
   "repository": "https://github.com/btomaev/ftml-editor",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "keywords": [
     "ftml",
     "scp",
@@ -12,7 +12,7 @@
     "scp foundation"
   ],
   "engines": {
-    "vscode": "^1.85.0"
+    "vscode": "^1.100.0"
   },
   "icon": "./assets/ftml-editor.128x128.png",
   "categories": [
@@ -196,13 +196,11 @@
     "@types/js-yaml": "^4.0.9",
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
-    "@types/vscode": "^1.85.0",
-    "@typescript-eslint/eslint-plugin": "^6.15.0",
-    "@typescript-eslint/parser": "^6.15.0",
-    "@vscode/test-cli": "^0.0.4",
-    "@vscode/test-electron": "^2.3.8",
-    "esbuild": "^0.23.0",
-    "eslint": "^8.56.0",
+    "@types/vscode": "^1.100.0",
+    "@typescript-eslint/eslint-plugin": "^8.46.0",
+    "@typescript-eslint/parser": "^8.46.0",
+    "esbuild": "^0.25.10",
+    "eslint": "^9.37.0",
     "js-yaml": "^4.1.0",
     "typescript": "^5.3.3"
   },

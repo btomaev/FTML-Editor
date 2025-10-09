@@ -28,4 +28,5 @@
 
 ## Особая благодарность
 - **_Vorobushekb_**
+- **_[juno was mad](https://github.com/JohnLyetacker)_**
 - Ilya Invisibly

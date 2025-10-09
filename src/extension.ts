@@ -325,7 +325,7 @@ export function activate(context: vscode.ExtensionContext) {
     })
 
     const cmd_preview_live = vscode.commands.registerCommand('ftml-editor.preview.start-live', async () => {
-        if (await checkPasskey(context.secrets) != true) return
+        // if (await checkPasskey(context.secrets) != true) return
         await startPreview(context, AuthProvider, true)
     })
 

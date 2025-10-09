@@ -1,18 +1,20 @@
 @charset "UTF-8";
 
-/* node_modules/highlight.js/styles/github.css */
 pre code.hljs {
   display: block;
   overflow-x: auto;
   padding: 1em;
 }
+
 code.hljs {
   padding: 3px 5px;
 }
+
 .hljs {
   color: #24292e;
   background: #ffffff;
 }
+
 .hljs-doctag,
 .hljs-keyword,
 .hljs-meta .hljs-keyword,
@@ -22,12 +24,14 @@ code.hljs {
 .hljs-variable.language_ {
   color: #d73a49;
 }
+
 .hljs-title,
 .hljs-title.class_,
 .hljs-title.class_.inherited__,
 .hljs-title.function_ {
   color: #6f42c1;
 }
+
 .hljs-attr,
 .hljs-attribute,
 .hljs-literal,
@@ -40,61 +44,64 @@ code.hljs {
 .hljs-selector-id {
   color: #005cc5;
 }
+
 .hljs-regexp,
 .hljs-string,
 .hljs-meta .hljs-string {
   color: #032f62;
 }
+
 .hljs-built_in,
 .hljs-symbol {
   color: #e36209;
 }
+
 .hljs-comment,
 .hljs-code,
 .hljs-formula {
   color: #6a737d;
 }
+
 .hljs-name,
 .hljs-quote,
 .hljs-selector-tag,
 .hljs-selector-pseudo {
   color: #22863a;
 }
+
 .hljs-subst {
   color: #24292e;
 }
+
 .hljs-section {
   color: #005cc5;
-  font-weight: bold;
+  font-weight: 700;
 }
+
 .hljs-bullet {
   color: #735c0f;
 }
+
 .hljs-emphasis {
   color: #24292e;
   font-style: italic;
 }
+
 .hljs-strong {
   color: #24292e;
-  font-weight: bold;
+  font-weight: 700;
 }
+
 .hljs-addition {
   color: #22863a;
   background-color: #f0fff4;
 }
+
 .hljs-deletion {
   color: #b31d28;
   background-color: #ffeef0;
 }
-.hljs-char.escape_,
-.hljs-link,
-.hljs-params,
-.hljs-property,
-.hljs-punctuation,
-.hljs-tag {
-}
 
-/* index.scss */
 .rimg img,
 .limg img,
 .cimg img,
@@ -102,35 +109,49 @@ code.hljs {
 .scp-image-block img {
   vertical-align: middle;
 }
+
 .w-list-pages {
   position: relative;
 }
+
 .printuser.avatarhover img.small {
   padding: 0;
-  margin-right: 8px;
   border: 1px solid #777;
-  transition: all 0.25s ease;
+  transition: all .25s ease;
   pointer-events: none;
 }
+
 .printuser.avatarhover a:hover img.small,
 .printuser span:hover img.small {
   transform: scale(4);
   z-index: 100;
   position: relative;
 }
+
+.printuser {
+  white-space: nowrap;
+}
+
+.mod-by .printuser {
+  white-space: initial;
+}
+
 .printuser a {
   margin-right: 0;
 }
+
 .w-stars-rate-module {
   width: 128px;
   display: inline-block;
-  color: black;
+  color: #000;
   margin-bottom: 16px;
 }
+
 .w-stars-rate-module .w-stars-rate-number {
   color: #4e6b6b;
-  font-weight: bold;
+  font-weight: 700;
 }
+
 .w-stars-rate-module .w-stars-rate-rating {
   position: relative;
   z-index: 0;
@@ -141,11 +162,12 @@ code.hljs {
   margin-left: 8px;
   margin-right: 8px;
 }
+
 .w-stars-rate-module .w-stars-rate-control {
   position: relative;
   z-index: 1;
   border: 1px solid #ccc;
-  box-shadow: 0 0 4px rgba(102, 102, 102, 0.3098039216);
+  box-shadow: 0 0 4px #6666664f;
   padding: 2px;
   display: flex;
   align-items: center;
@@ -153,6 +175,7 @@ code.hljs {
   background: white;
   height: 24px;
 }
+
 .w-stars-rate-module .w-stars-rate-control .w-stars-rate-stars-wrapper {
   position: relative;
   font-size: 150%;
@@ -161,6 +184,7 @@ code.hljs {
   align-items: center;
   justify-content: center;
 }
+
 .w-stars-rate-module .w-stars-rate-control .w-stars-rate-stars-wrapper:before {
   font-family: "Font Awesome 5 Free";
   position: relative;
@@ -173,6 +197,7 @@ code.hljs {
   color: #eee;
   white-space: nowrap;
 }
+
 .w-stars-rate-module .w-stars-rate-control .w-stars-rate-stars-wrapper .w-stars-rate-stars-view {
   pointer-events: none;
   position: absolute;
@@ -183,6 +208,7 @@ code.hljs {
   justify-content: flex-start;
   overflow: hidden;
 }
+
 .w-stars-rate-module .w-stars-rate-control .w-stars-rate-stars-wrapper .w-stars-rate-stars-view:before {
   font-family: "Font Awesome 5 Free";
   position: relative;
@@ -195,9 +221,11 @@ code.hljs {
   white-space: nowrap;
   color: var(--rated-var, #4e6b6b);
 }
+
 .w-stars-rate-module .w-stars-rate-control .w-stars-rate-stars-wrapper:hover .w-stars-rate-stars-view:before {
   color: #f0ac00;
 }
+
 .w-stars-rate-module .w-stars-rate-control .w-stars-rate-cancel {
   width: 16px;
   height: 16px;
@@ -207,13 +235,16 @@ code.hljs {
   margin-left: 8px;
   text-align: center;
 }
+
 .w-stars-rate-module .w-stars-rate-control .w-stars-rate-cancel:before {
   content: "\d7";
 }
+
 .w-stars-rate-module .w-stars-rate-control .w-stars-rate-cancel:hover {
   background: #ec3f3f;
-  color: white;
+  color: #fff;
 }
+
 .w-stars-rate-module .w-stars-rate-votes {
   position: relative;
   z-index: 0;
@@ -225,11 +256,55 @@ code.hljs {
   margin-left: 8px;
   margin-right: 8px;
   color: #4e6b6b;
-  font-weight: bold;
+  font-weight: 700;
 }
+
 .w-code {
   white-space: pre !important;
 }
+
+.thread-container .post .long .head .vote {
+  flex-grow: 1;
+  text-align: right;
+  color: #666;
+}
+
+.thread-container .post .long .head .rate {
+  font-weight: 700;
+}
+
+.thread-container .post .long .head .rate:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f005";
+  letter-spacing: 2px;
+  color: #666;
+}
+
+.thread-container .post .long .head.op-post {
+  background: #e4f0c8;
+}
+
+.printuser .badge {
+  background: gray;
+  padding: 0 2px;
+  border-radius: 3px;
+  color: #fff;
+  font-weight: 500;
+  font-size: .75em;
+  height: 1.5em;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: text-top;
+  box-sizing: border-box;
+}
+
+.printuser .icon {
+  display: inline-flex;
+  vertical-align: text-top;
+  height: 14.4px;
+  width: 14.4px;
+}
+
 /*!
   Theme: GitHub
   Description: Light theme as seen on github.com
